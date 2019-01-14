@@ -27,6 +27,16 @@ que será usado como nosso DatawareHouse
 
 8 - Aguarde...
 
+9 - Execute o programa Mondrian Schema Workbench
+
+10 - Abra o xml (File / Open...) do cubo do Cardio (mondrian/CARDIO.mondrian.xml)
+
+11 - Configure as conexões do cubo (Options / Connections) com as informações do seu ambiente
+
+12 - Publique o seu cubo no servidor do Pentaho BA (File / Publish...)
+
+13 - Acesse o servidor do Pentaho BA, e crie visualizações e paineis.
+
 ## CUBOS PARA CARDIO
 - Custos Assistenciais
   - Fato: Cada Item Evento

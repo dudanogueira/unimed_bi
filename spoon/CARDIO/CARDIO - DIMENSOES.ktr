@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2019/01/14 09:57:00.991</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/14 11:32:03.703</modified_date>
+    <modified_date>2019/01/14 13:57:02.502</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -488,7 +488,7 @@
   </connection>
   <connection>
     <name>CARDIO</name>
-    <server>192.0.0.4</server>
+    <server>192.0.0.192</server>
     <type>MSSQL</type>
     <access>Native</access>
     <database>CARDIO</database>
@@ -601,62 +601,6 @@
     </GUI>
   </step>
   <step>
-    <name>insere_dim_cidade</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_cidade</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>codigo</column_name>
-        <stream_name>codigo</stream_name>
-      </field>
-      <field>
-        <column_name>nome</column_name>
-        <stream_name>nome</stream_name>
-      </field>
-      <field>
-        <column_name>uf</column_name>
-        <stream_name>uf</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>dim servico operadora</name>
     <type>TableInput</type>
     <description />
@@ -759,6 +703,322 @@ order by 1</sql>
     <GUI>
       <xloc>96</xloc>
       <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_canal_atendimento</name>
+    <type>DataGrid</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>codigo</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>nome</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>95</item>
+        <item>Mídia Eletrônica</item>
+      </line>
+      <line>
+        <item>1</item>
+        <item>Balcão</item>
+      </line>
+      <line>
+        <item>2</item>
+        <item>Fax</item>
+      </line>
+      <line>
+        <item>3</item>
+        <item>Tele atendimento</item>
+      </line>
+      <line>
+        <item>4</item>
+        <item>U.R.A</item>
+      </line>
+      <line>
+        <item>90</item>
+        <item>Online</item>
+      </line>
+    </data>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_prestador</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <sql>Select 
+	PrestadorServico.AutoId as prestador_autoid,
+	PrestadorServico.Codigo as prestador_codigo,
+	Pessoa.Nome as prestador_nome,
+	PrestadorServico.InicioVigencia as prestador_inicio_vigencia,
+	ClassePrestador.Codigo as prestador_classe_codigo,
+	ClassePrestador.Nome as prestador_classe_nome,
+	Endereco.Codigo as prestador_cidade_codigo,
+	Endereco.Nome as prestador_cidade_nome,
+	Endereco.UF as prestador_cidade_uf
+from PrestadorServico
+inner join ClassePrestador on PrestadorServico.Classe=ClassePrestador.Codigo
+inner join Pessoa on PrestadorServico.Pessoa=Pessoa.AutoId
+CROSS APPLY (
+	SELECT top 1 CidadePais.Codigo, CidadePais.UF, CidadePais.Nome
+	from EnderecoPessoa 
+	inner join CidadePais on EnderecoPessoa.Cidade=CidadePais.Codigo
+	where 
+		Pessoa=Pessoa.AutoId
+		and EnderecoPessoa.FimVigencia is Null
+		and EnderecoPessoa.ParaPublicacao=1
+	) Endereco</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_canal_atendimento</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_solicitacao_canal_atendimento</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_cidade</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_cidade</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
+      </field>
+      <field>
+        <column_name>uf</column_name>
+        <stream_name>uf</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_prestador</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_prestador</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>prestador_autoid</column_name>
+        <stream_name>prestador_autoid</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_codigo</column_name>
+        <stream_name>prestador_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_nome</column_name>
+        <stream_name>prestador_nome</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_inicio_vigencia</column_name>
+        <stream_name>prestador_inicio_vigencia</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_classe_codigo</column_name>
+        <stream_name>prestador_classe_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_classe_nome</column_name>
+        <stream_name>prestador_classe_nome</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_cidade_codigo</column_name>
+        <stream_name>prestador_cidade_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_cidade_nome</column_name>
+        <stream_name>prestador_cidade_nome</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_cidade_uf</column_name>
+        <stream_name>prestador_cidade_uf</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -911,261 +1171,6 @@ order by 1</sql>
     <GUI>
       <xloc>304</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_canal_atendimento</name>
-    <type>DataGrid</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>codigo</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>nome</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>95</item>
-        <item>Mídia Eletrônica</item>
-      </line>
-      <line>
-        <item>1</item>
-        <item>Balcão</item>
-      </line>
-      <line>
-        <item>2</item>
-        <item>Fax</item>
-      </line>
-      <line>
-        <item>3</item>
-        <item>Tele atendimento</item>
-      </line>
-      <line>
-        <item>4</item>
-        <item>U.R.A</item>
-      </line>
-      <line>
-        <item>90</item>
-        <item>Online</item>
-      </line>
-    </data>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_canal_atendimento</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_solicitacao_canal_atendimento</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>N</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>codigo</column_name>
-        <stream_name>codigo</stream_name>
-      </field>
-      <field>
-        <column_name>nome</column_name>
-        <stream_name>nome</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_prestador</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>CARDIO</connection>
-    <sql>Select 
-	PrestadorServico.AutoId as prestador_autoid,
-	PrestadorServico.Codigo as prestador_codigo,
-	Pessoa.Nome as prestador_nome,
-	PrestadorServico.InicioVigencia as prestador_inicio_vigencia,
-	ClassePrestador.Codigo as prestador_classe_codigo,
-	ClassePrestador.Nome as prestador_classe_nome,
-	Endereco.Codigo as prestador_cidade_codigo,
-	Endereco.Nome as prestador_cidade_nome
-from PrestadorServico
-inner join ClassePrestador on PrestadorServico.Classe=ClassePrestador.Codigo
-inner join Pessoa on PrestadorServico.Pessoa=Pessoa.AutoId
-CROSS APPLY (
-	SELECT top 1 CidadePais.Codigo, CidadePais.UF, CidadePais.Nome
-	from EnderecoPessoa 
-	inner join CidadePais on EnderecoPessoa.Cidade=CidadePais.Codigo
-	where 
-		Pessoa=Pessoa.AutoId
-		and EnderecoPessoa.FimVigencia is Null
-		and EnderecoPessoa.ParaPublicacao=1
-	) Endereco</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>48</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_prestador</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_prestador</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>prestador_autoid</column_name>
-        <stream_name>prestador_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_codigo</column_name>
-        <stream_name>prestador_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_nome</column_name>
-        <stream_name>prestador_nome</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_inicio_vigencia</column_name>
-        <stream_name>prestador_inicio_vigencia</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_classe_codigo</column_name>
-        <stream_name>prestador_classe_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_classe_nome</column_name>
-        <stream_name>prestador_classe_nome</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_cidade_codigo</column_name>
-        <stream_name>prestador_cidade_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_cidade_nome</column_name>
-        <stream_name>prestador_cidade_nome</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
