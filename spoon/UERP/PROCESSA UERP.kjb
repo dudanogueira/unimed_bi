@@ -1,13 +1,13 @@
 <job>
-  <name>PROCESSA CARDIO</name>
+  <name>PROCESSA UERP</name>
   <description />
   <extended_description />
   <job_version />
-  <directory>/CARDIO</directory>
+  <directory>/UERP</directory>
   <created_user>-</created_user>
-  <created_date>2019/01/14 13:30:14.041</created_date>
+  <created_date>2019/01/14 14:31:35.297</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2019/01/14 14:37:00.421</modified_date>
+  <modified_date>2019/01/14 14:41:30.122</modified_date>
   <parameters>
     </parameters>
   <slaveservers>
@@ -303,86 +303,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>144</yloc>
-      <attributes_kjc />
-    </entry>
-    <entry>
-      <name>DIMENSOES</name>
-      <description />
-      <type>TRANS</type>
-      <attributes />
-      <specification_method>rep_name</specification_method>
-      <trans_object_id />
-      <filename />
-      <transname>CARDIO - DIMENSOES</transname>
-      <directory>${Internal.Entry.Current.Directory}</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name />
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>528</xloc>
-      <yloc>144</yloc>
-      <attributes_kjc />
-    </entry>
-    <entry>
-      <name>FATO CUSTO ASSISTENCIAL</name>
-      <description />
-      <type>TRANS</type>
-      <attributes />
-      <specification_method>rep_name</specification_method>
-      <trans_object_id />
-      <filename />
-      <transname>CARDIO - FATO CUSTO ASSISTENCIAL</transname>
-      <directory>${Internal.Entry.Current.Directory}</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name />
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>688</xloc>
-      <yloc>144</yloc>
+      <xloc>128</xloc>
+      <yloc>96</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -393,8 +315,8 @@
       <specification_method>rep_name</specification_method>
       <trans_object_id />
       <filename />
-      <transname>CARDIO - CRIA VIEWS</transname>
-      <directory>${Internal.Entry.Current.Directory}</directory>
+      <transname>UERP - CRIA VIEWS</transname>
+      <directory>/UERP</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -420,8 +342,98 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>272</xloc>
-      <yloc>144</yloc>
+      <xloc>304</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>DIMENSOES</name>
+      <description />
+      <type>TRANS</type>
+      <attributes />
+      <specification_method>rep_name</specification_method>
+      <trans_object_id />
+      <filename />
+      <transname>UERP - DIMENSOES</transname>
+      <directory>/UERP</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>592</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>Success</name>
+      <description />
+      <type>SUCCESS</type>
+      <attributes />
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>880</xloc>
+      <yloc>96</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>FATO PROTOCOLOS</name>
+      <description />
+      <type>TRANS</type>
+      <attributes />
+      <specification_method>rep_name</specification_method>
+      <trans_object_id />
+      <filename />
+      <transname>UERP - FATO PROTOCOLOS</transname>
+      <directory>/UERP</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>720</xloc>
+      <yloc>96</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -459,33 +471,12 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>144</yloc>
-      <attributes_kjc />
-    </entry>
-    <entry>
-      <name>Success</name>
-      <description />
-      <type>SUCCESS</type>
-      <attributes />
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>832</xloc>
-      <yloc>144</yloc>
+      <xloc>432</xloc>
+      <yloc>96</yloc>
       <attributes_kjc />
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>DIMENSOES</from>
-      <to>FATO CUSTO ASSISTENCIAL</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>Start</from>
       <to>CRIA VIEWS</to>
@@ -494,6 +485,24 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>DIMENSOES</from>
+      <to>FATO PROTOCOLOS</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>FATO PROTOCOLOS</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>CRIA VIEWS</from>
@@ -512,15 +521,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>FATO CUSTO ASSISTENCIAL</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
