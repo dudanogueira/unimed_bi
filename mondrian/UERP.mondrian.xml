@@ -1,0 +1,60 @@
+<Schema name="UERP" description="UERP">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Tempo">
+    <Hierarchy name="Ano" visible="true" hasAll="true" allMemberCaption="Todos os Anos" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Ano" visible="true" column="year_sk" type="Numeric" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="M&#234;s" visible="true" hasAll="true" allMemberCaption="Todos os M&#234;ses" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="M&#234;s" visible="true" column="month_sk" nameColumn="month_name" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Trimestre" visible="true" hasAll="true" allMemberCaption="Todos os trimestres" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Trimestre" visible="true" column="quarter_sk" nameColumn="quarter_name" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Protocolos de Atendimento" visible="true" cache="true" enabled="true">
+    <Table name="fato_atendimento_protocolos" schema="public">
+    </Table>
+    <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="date_sk" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="canal" highCardinality="false" name="Canal">
+      <Hierarchy name="Canal" visible="true" hasAll="true">
+        <Table name="dim_canal_atendimento_protocolo" schema="public">
+        </Table>
+        <Level name="Canal" visible="true" table="dim_canal_atendimento_protocolo" column="codigo" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipo de Intercambio">
+      <Hierarchy name="Tipo" visible="true" hasAll="true">
+        <Level name="Tipo de Atendimento" visible="true" column="tipo_intercambio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="tipo_id" highCardinality="false" name="Natureza Tipo">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id">
+        <Table name="dim_protocolo_tipo" schema="public">
+        </Table>
+        <Level name="Tipo" visible="true" column="id" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="categoria_id" highCardinality="false" name="Natureza Categoria">
+      <Hierarchy visible="true" hasAll="true">
+        <Table name="dim_protocolo_categoria" schema="public">
+        </Table>
+        <Level name="Categoria" visible="true" column="id" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Quantidade" column="id" aggregator="distinct-count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

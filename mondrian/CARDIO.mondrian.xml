@@ -1,0 +1,84 @@
+<Schema name="CARDIO" description="CARDIO">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Tempo">
+    <Hierarchy name="Ano" visible="true" hasAll="true" allMemberCaption="Todos os Anos" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Ano" visible="true" column="year_sk" type="Numeric" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="M&#234;s" visible="true" hasAll="true" allMemberCaption="Todos os M&#234;ses" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="M&#234;s" visible="true" column="month_sk" nameColumn="month_name" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Trimestre" visible="true" hasAll="true" allMemberCaption="Todos os trimestres" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Trimestre" visible="true" column="quarter_sk" nameColumn="quarter_name" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Custos Assistenciais" visible="true" cache="true" enabled="true">
+    <Table name="fato_custo_assistencial" schema="public">
+    </Table>
+    <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="date_sk" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="unimed_atendimento_autoid" highCardinality="false" name="Unimed Atendimento">
+      <Hierarchy name="Unidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+        <Table name="dim_unimed" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="unimed_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="UF" visible="true" hasAll="true" primaryKey="unimed_autoid">
+        <Table name="dim_unimed" schema="public">
+        </Table>
+        <Level name="UF" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="prestador_autoid" highCardinality="false" name="Prestador Local">
+      <Hierarchy name="Nome" visible="true" hasAll="true" primaryKey="prestador_autoid">
+        <Table name="dim_prestador" schema="public">
+        </Table>
+        <Level name="Nome" visible="true" column="prestador_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Classe" visible="true" hasAll="true" primaryKey="prestador_autoid">
+        <Table name="dim_prestador" schema="public">
+        </Table>
+        <Level name="Classe" visible="true" column="classe_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="UF" visible="true" hasAll="true" primaryKey="prestador_autoid">
+        <Table name="dim_prestador" schema="public">
+        </Table>
+        <Level name="UF" visible="true" column="cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Cidade" visible="true" hasAll="true" primaryKey="prestador_autoid">
+        <Table name="dim_prestador" schema="public">
+        </Table>
+        <Level name="Cidade" visible="true" column="cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="servico_autoid" highCardinality="false" name="Procedimento">
+      <Hierarchy visible="true" hasAll="true" primaryKey="servico_autoid">
+        <Table name="dim_servico_operadora" schema="public">
+        </Table>
+        <Level name="Codigo" visible="true" column="servico_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Valor cobrado" column="valor_cobrado" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum">
+    </Measure>
+    <Measure name="Valor pago" column="valor_pago" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum">
+    </Measure>
+    <Measure name="Quantidade" column="item_evento_autoid" aggregator="distinct-count" visible="true">
+    </Measure>
+    <CalculatedMember name="Pre&#231;o M&#233;dio" formatString="R$ #,###.00;(R$ #,###.00)" formula="[Measures].[Valor pago]/[Measures].[Quantidade]" dimension="Measures" visible="true">
+    </CalculatedMember>
+  </Cube>
+</Schema>

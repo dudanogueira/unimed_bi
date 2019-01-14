@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  pentaho:
+    build:
+      context: .
+      dockerfile: DockerFile
+
+    ports:
+     - "8085:8080"
+    volumes:
+     - pentaho-solutions:/opt/pentaho/pentaho-server/pentaho-solutions/
+    hostname: "dnog"
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: unimedbi
+    volumes:
+     - postgres_data:/var/lib/postgresql/data
+    
+
+volumes:
+  pentaho-solutions:
+  postgres_data:
