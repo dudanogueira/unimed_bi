@@ -17,15 +17,15 @@ que será usado como nosso DatawareHouse
 
 3 - Abra o Spoon (PENTAHO DATA INTEGRATOR - PDI), e configura como repositório a pasta "spoon" deste repositório
 
-4 - Abra a pasta "common" e abra a "dimensão tempo"
+4 - Abra o JOB PROCESSA CARDIO CARDIO
 
-5 - Acesse a aba "VIEW" > "CONEXÕES" e edite cada uma das conexões, usando as configurações do seu ambiente
+5 - Acesse a aba "VIEW" > "CONEXÕES" e edite cada uma das conexões, usando as configurações do seu ambiente. Crie o banco do BI, caso necessário.
 
-6 - Ainda no step "DIMENSAO TEMPO" clique duas vezes no último step, "DIMENSION DAY"  e clique no botão SQL e depois execute.
+6 - Clique no botão "Generate the SQL needed to run this job", para criar todas as tabelas que receberão as dimensões e fatos do Cardio
 
-7 - Execute o STEP, clicando no botão de play
+7 - Execute o JOB (botão "play")
 
-8 - Repita o processo com todos as transformaçoes.
+8 - Aguarde...
 
 ## CUBOS PARA CARDIO
 - Custos Assistenciais
