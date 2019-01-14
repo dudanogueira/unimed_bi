@@ -6,7 +6,7 @@
     <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/</directory>
+    <directory>/CARDIO</directory>
     <parameters>
     </parameters>
     <log>
@@ -427,88 +427,129 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/12/24 08:51:50.891</created_date>
+    <created_date>2019/01/14 09:57:00.991</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/14 09:43:51.836</modified_date>
+    <modified_date>2019/01/14 11:32:03.703</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>BI</name>
+    <server>127.0.0.1</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>unimed_bi</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4be17a77ddb96add3</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CARDIO</name>
+    <server>192.0.0.4</server>
+    <type>MSSQL</type>
+    <access>Native</access>
+    <database>CARDIO</database>
+    <port>1433</port>
+    <username>sa</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79bb7ed7c0ff88</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>1433</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
-      <from>dim_prestador</from>
-      <to>insere_dim_prestador</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_canal_atendimento</from>
-      <to>insere_dim_canal_atendimento</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>dim_cidade</from>
+      <from>DIM CIDADE</from>
       <to>insere_dim_cidade</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>desde 2007</from>
-      <to>Days_since</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calc Date</from>
-      <to>DayOfWeekDesc</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DayOfWeekDesc</from>
-      <to>MonthDesc</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DayOfWeekDesc Gen</from>
-      <to>DayOfWeekDesc Norm</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DayOfWeekDesc Norm</from>
-      <to>DayOfWeekDesc</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Days_since</from>
-      <to>Calc Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Java Script Value</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MonthDesc</from>
-      <to>Select values 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MonthDesc Gen</from>
-      <to>MonthDesc Norm</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MonthDesc Norm</from>
-      <to>MonthDesc</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>DIMENSION_DAY</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 2</from>
-      <to>Java Script Value</to>
+      <from>dim servico operadora</from>
+      <to>insere_dim_servico_operadora</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -517,14 +558,19 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>dim servico operadora</from>
-      <to>insere_dim_servico_operadora</to>
+      <from>dim_canal_atendimento</from>
+      <to>insere_dim_canal_atendimento</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>dim_prestador</from>
+      <to>insere_dim_prestador</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calc Date</name>
-    <type>Calculator</type>
+    <name>DIM CIDADE</name>
+    <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -533,396 +579,14 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <calculation>
-      <field_name>one</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>1</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>1</value_length>
-      <value_precision>0</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>2_9</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>2.9</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>33</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>.33</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>v_date</field_name>
-      <calc_type>ADD_DAYS</calc_type>
-      <field_a>START_DAY</field_a>
-      <field_b>Days_Since</field_b>
-      <field_c />
-      <value_type>Date</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>Year</field_name>
-      <calc_type>YEAR_OF_DATE</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>4</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>Month</field_name>
-      <calc_type>MONTH_OF_DATE</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>2</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>MntTmp</field_name>
-      <calc_type>MONTH_OF_DATE</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>DayOfYear</field_name>
-      <calc_type>DAY_OF_YEAR</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>3</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>DayOfMonth</field_name>
-      <calc_type>DAY_OF_MONTH</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>2</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>DayOfWeek</field_name>
-      <calc_type>DAY_OF_WEEK</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>1</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>WeekOfYear</field_name>
-      <calc_type>WEEK_OF_YEAR</calc_type>
-      <field_a>v_date</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>2</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>QuarterTmp</field_name>
-      <calc_type>DIVIDE</calc_type>
-      <field_a>MntTmp</field_a>
-      <field_b>2_9</field_b>
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>Quarter</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>QuarterTmp</field_a>
-      <field_b>33</field_b>
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>date_tk</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>Days_Since</field_a>
-      <field_b>one</field_b>
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>1</value_length>
-      <value_precision>0</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>QuarterConstant</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>Q</field_a>
-      <field_b />
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>QuarterName</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>QuarterConstant</field_a>
-      <field_b>Quarter</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>2</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>YearQuarterName</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>QuarterName</field_a>
-      <field_b>Year</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>32</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>weekofmnthtmp1</field_name>
-      <calc_type>SUBTRACT</calc_type>
-      <field_a>DayOfMonth</field_a>
-      <field_b>DayOfWeek</field_b>
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>seven</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>7</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>weekofmnthtmp2</field_name>
-      <calc_type>DIVIDE</calc_type>
-      <field_a>weekofmnthtmp1</field_a>
-      <field_b>seven</field_b>
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>1_49</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>1.49</field_a>
-      <field_b />
-      <field_c />
-      <value_type>Number</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask>0.0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>week_of_month_number</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>weekofmnthtmp2</field_a>
-      <field_b>1_49</field_b>
-      <field_c />
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask>0</conversion_mask>
-      <decimal_symbol>.</decimal_symbol>
-      <grouping_symbol>,</grouping_symbol>
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>WeekConstant</field_name>
-      <calc_type>CONSTANT</calc_type>
-      <field_a>W</field_a>
-      <field_b />
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>week_of_month_name</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>WeekConstant</field_a>
-      <field_b>week_of_month_number</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>week_name_tmp</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>WeekConstant</field_a>
-      <field_b>WeekOfYear</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>4</value_length>
-      <value_precision>-1</value_precision>
-      <remove>Y</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>week_name</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>week_name_tmp</field_a>
-      <field_b>Year</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>32</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
+    <connection>CARDIO</connection>
+    <sql>Select codigo, nome, uf from cidadepais</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -931,14 +595,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>528</yloc>
+      <xloc>96</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>DIMENSION_DAY</name>
-    <type>InsertUpdate</type>
+    <name>insere_dim_cidade</name>
+    <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -948,888 +612,37 @@
       <schema_name />
     </partitioning>
     <connection>BI</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema />
-      <table>dim_tempo</table>
-      <key>
-        <name>DATE_SK</name>
-        <field>DATE_SK</field>
-        <condition>=</condition>
-        <name2 />
-      </key>
-      <value>
-        <name>YEAR_NUMBER</name>
-        <rename>year_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MONTH_NUMBER</name>
-        <rename>month_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_OF_YEAR_NUMBER</name>
-        <rename>day_of_year_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_OF_MONTH_NUMBER</name>
-        <rename>day_of_month_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_OF_WEEK_NUMBER</name>
-        <rename>day_of_week_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WEEK_OF_YEAR_NUMBER</name>
-        <rename>week_of_year_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_NAME</name>
-        <rename>day_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MONTH_NAME</name>
-        <rename>month_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>QUARTER_NUMBER</name>
-        <rename>quarter_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>QUARTER_NAME</name>
-        <rename>quarter_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>YEAR_QUARTER_NAME</name>
-        <rename>year_quarter_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WEEKEND_IND</name>
-        <rename>weekend_ind</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAYS_IN_MONTH_QTY</name>
-        <rename>DAYS_IN_MONTH_QTY</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DATE_SK</name>
-        <rename>DATE_SK</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_DESC</name>
-        <rename>DAY_DESC</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WEEK_SK</name>
-        <rename>WEEK_SK</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_DATE</name>
-        <rename>DAY_DATE</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WEEK_NAME</name>
-        <rename>week_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WEEK_OF_MONTH_NUMBER</name>
-        <rename>week_of_month_number</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>WEEK_OF_MONTH_NAME</name>
-        <rename>week_of_month_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>YEAR_SK</name>
-        <rename>year_sk</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>MONTH_SK</name>
-        <rename>month_sk</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>QUARTER_SK</name>
-        <rename>quarter_sk</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>DAY_OF_WEEK_SORT_NAME</name>
-        <rename>day_of_week_sort_name</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>YEAR_SORT_NUMBER</name>
-        <rename>year_sort_number</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>960</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DayOfWeekDesc</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>DayOfWeekDesc Norm</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>N</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>DayOfWeek</name>
-        <field>DayNr</field>
-      </key>
-      <value>
-        <name>DayDesc</name>
-        <rename>DayOfWeekDesc</rename>
-        <default />
-        <type>String</type>
-      </value>
-      <value>
-        <name>DayDescShort</name>
-        <rename>DayOfWeekShortDesc</rename>
-        <default />
-        <type>String</type>
-      </value>
-      <value>
-        <name>WeekendInd</name>
-        <rename>DayofWeekendInd</rename>
-        <default />
-        <type>String</type>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DayOfWeekDesc Gen</name>
-    <type>RowGenerator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>DayNr1</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>2</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc1</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Segunda</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort1</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>SEG</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd1</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>N</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayNr2</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>3</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc2</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Terça</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort2</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>TER</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd2</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>N</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayNr3</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>4</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc3</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Quarta</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort3</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>QUA</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd3</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>N</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayNr4</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>5</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc4</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Quinta</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort4</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>QUI</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd4</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>N</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayNr5</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>6</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc5</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Sexta</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort5</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>SEX</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd5</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>N</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayNr6</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>7</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc6</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Sábado</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort6</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>SAB</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd6</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Y</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayNr7</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>1</nullif>
-        <length>1</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDesc7</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Domingo</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>DayDescShort7</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>DOM</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>WeekendInd7</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Y</nullif>
-        <length>1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms />
-    <row_time_field />
-    <last_time_field />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DayOfWeekDesc Norm</name>
-    <type>Normaliser</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <typefield>typefield</typefield>
-    <fields>
-      <field>
-        <name>DayNr1</name>
-        <value>1</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc1</name>
-        <value>1</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort1</name>
-        <value>1</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd1</name>
-        <value>1</value>
-        <norm>WeekendInd</norm>
-      </field>
-      <field>
-        <name>DayNr2</name>
-        <value>2</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc2</name>
-        <value>2</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort2</name>
-        <value>2</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd2</name>
-        <value>2</value>
-        <norm>WeekendInd</norm>
-      </field>
-      <field>
-        <name>DayNr3</name>
-        <value>3</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc3</name>
-        <value>3</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort3</name>
-        <value>3</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd3</name>
-        <value>3</value>
-        <norm>WeekendInd</norm>
-      </field>
-      <field>
-        <name>DayNr4</name>
-        <value>4</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc4</name>
-        <value>4</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort4</name>
-        <value>4</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd4</name>
-        <value>4</value>
-        <norm>WeekendInd</norm>
-      </field>
-      <field>
-        <name>DayNr5</name>
-        <value>5</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc5</name>
-        <value>5</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort5</name>
-        <value>5</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd5</name>
-        <value>5</value>
-        <norm>WeekendInd</norm>
-      </field>
-      <field>
-        <name>DayNr6</name>
-        <value>6</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc6</name>
-        <value>6</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort6</name>
-        <value>6</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd6</name>
-        <value>6</value>
-        <norm>WeekendInd</norm>
-      </field>
-      <field>
-        <name>DayNr7</name>
-        <value>7</value>
-        <norm>DayNr</norm>
-      </field>
-      <field>
-        <name>DayDesc7</name>
-        <value>7</value>
-        <norm>DayDesc</norm>
-      </field>
-      <field>
-        <name>DayDescShort7</name>
-        <value>7</value>
-        <norm>DayDescShort</norm>
-      </field>
-      <field>
-        <name>WeekendInd7</name>
-        <value>7</value>
-        <norm>WeekendInd</norm>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Days_since</name>
-    <type>Sequence</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <valuename>Days_since</valuename>
-    <use_database>N</use_database>
-    <connection />
     <schema />
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name />
-    <start_at>0</start_at>
-    <increment_by>1</increment_by>
-    <max_value>10000000</max_value>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Java Script Value</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>Y</compatible>
-    <optimizationLevel />
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>ScriptValue</jsScript_name>
-        <jsScript_script>var DATE_SK = IN_DATE.Clone().dat2str("yyyyMMdd").getInteger();
-var DAY_DESC = IN_DATE.Clone().dat2str("dd-MM-yyyy").getString();
-var OUT_DATE = IN_DATE.Clone();
-var DAYS_IN_MONTH_QTY = IN_DATE.Clone().last_day().dat2str("dd");
-var WEEK_SK = IN_DATE.Clone().dat2str("yyyyWW").getInteger();
-var MONTH_SK = IN_DATE.Clone().dat2str("MM").getInteger();
-var YEAR_SK = IN_DATE.Clone().dat2str("yyyy").getInteger();
-var QUARTER_SK = Quarter.Clone();
-var YEAR_SORT_NUMBER = IN_DATE.Clone().dat2str("yyyy")
-var DAY_OF_WEEK_SORT_NAME = "Day " + DayOfWeek.getInteger();</jsScript_script>
-      </jsScript>
-    </jsScripts>
+    <table>dim_cidade</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
     <fields>
       <field>
-        <name>DATE_SK</name>
-        <rename>DATE_SK</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
       </field>
       <field>
-        <name>DAY_DESC</name>
-        <rename>DAY_DESC</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
       </field>
       <field>
-        <name>OUT_DATE</name>
-        <rename>DAY_DATE</rename>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>DAYS_IN_MONTH_QTY</name>
-        <rename>DAYS_IN_MONTH_QTY</rename>
-        <type>Integer</type>
-        <length>2</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>WEEK_SK</name>
-        <rename>WEEK_SK</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>MONTH_SK</name>
-        <rename>MONTH_SK</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>YEAR_SK</name>
-        <rename>YEAR_SK</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>QUARTER_SK</name>
-        <rename>QUARTER_SK</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>YEAR_SORT_NUMBER</name>
-        <rename>YEAR_SORT_NUMBER</rename>
-        <type>String</type>
-        <length>4</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>DAY_OF_WEEK_SORT_NAME</name>
-        <rename>DAY_OF_WEEK_SORT_NAME</rename>
-        <type>String</type>
-        <length>60</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+        <column_name>uf</column_name>
+        <stream_name>uf</stream_name>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -1838,769 +651,8 @@ var DAY_OF_WEEK_SORT_NAME = "Day " + DayOfWeek.getInteger();</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MonthDesc</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>MonthDesc Norm</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>N</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>Month</name>
-        <field>MonthNr</field>
-      </key>
-      <value>
-        <name>MonthDesc</name>
-        <rename>MonthDesc</rename>
-        <default />
-        <type>String</type>
-      </value>
-      <value>
-        <name>MonthDescShort</name>
-        <rename>MonthShortDesc</rename>
-        <default />
-        <type>String</type>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MonthDesc Gen</name>
-    <type>RowGenerator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>desc1</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Janeiro</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short1</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>JAN</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc2</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Fevereiro</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short2</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>FEV</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc3</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Março</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short3</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>MAR</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc4</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Abril</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short4</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>ABR</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc5</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Maio</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short5</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>MAI</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc6</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Junho</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short6</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>JUN</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc7</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Julho</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short7</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>JUL</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc8</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Agosto</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short8</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>AUG</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc9</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Setembro</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short9</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>SEP</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc10</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Outubro</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short10</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>OUT</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc11</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Novembro</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short11</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>NOV</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>desc12</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>Dezembro</nullif>
-        <length>30</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>short12</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>DEZ</nullif>
-        <length>3</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>1</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms />
-    <row_time_field />
-    <last_time_field />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MonthDesc Norm</name>
-    <type>Normaliser</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <typefield>MonthNr</typefield>
-    <fields>
-      <field>
-        <name>desc1</name>
-        <value>1</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc2</name>
-        <value>2</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc3</name>
-        <value>3</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc4</name>
-        <value>4</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc5</name>
-        <value>5</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc6</name>
-        <value>6</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc7</name>
-        <value>7</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc8</name>
-        <value>8</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc9</name>
-        <value>9</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc10</name>
-        <value>10</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc11</name>
-        <value>11</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>desc12</name>
-        <value>12</value>
-        <norm>MonthDesc</norm>
-      </field>
-      <field>
-        <name>short1</name>
-        <value>1</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short2</name>
-        <value>2</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short3</name>
-        <value>3</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short4</name>
-        <value>4</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short5</name>
-        <value>5</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short6</name>
-        <value>6</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short7</name>
-        <value>7</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short8</name>
-        <value>8</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short9</name>
-        <value>9</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short10</name>
-        <value>10</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short11</name>
-        <value>11</value>
-        <norm>MonthDescShort</norm>
-      </field>
-      <field>
-        <name>short12</name>
-        <value>12</value>
-        <norm>MonthDescShort</norm>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>Year</name>
-        <rename>year_number</rename>
-      </field>
-      <field>
-        <name>Month</name>
-        <rename>month_number</rename>
-      </field>
-      <field>
-        <name>DayOfYear</name>
-        <rename>day_of_year_number</rename>
-      </field>
-      <field>
-        <name>DayOfMonth</name>
-        <rename>day_of_month_number</rename>
-      </field>
-      <field>
-        <name>DayOfWeek</name>
-        <rename>day_of_week_number</rename>
-      </field>
-      <field>
-        <name>WeekOfYear</name>
-        <rename>week_of_year_number</rename>
-      </field>
-      <field>
-        <name>DayOfWeekDesc</name>
-        <rename>day_name</rename>
-      </field>
-      <field>
-        <name>MonthDesc</name>
-        <rename>month_name</rename>
-      </field>
-      <field>
-        <name>Quarter</name>
-        <rename>quarter_number</rename>
-      </field>
-      <field>
-        <name>QuarterName</name>
-        <rename>quarter_name</rename>
-      </field>
-      <field>
-        <name>YearQuarterName</name>
-        <rename>year_quarter_name</rename>
-      </field>
-      <field>
-        <name>DayofWeekendInd</name>
-        <rename>weekend_ind</rename>
-      </field>
-      <field>
-        <name>DAYS_IN_MONTH_QTY</name>
-      </field>
-      <field>
-        <name>DATE_SK</name>
-      </field>
-      <field>
-        <name>DAY_DESC</name>
-      </field>
-      <field>
-        <name>WEEK_SK</name>
-      </field>
-      <field>
-        <name>DAY_DATE</name>
-      </field>
-      <field>
-        <name>week_name</name>
-      </field>
-      <field>
-        <name>week_of_month_number</name>
-      </field>
-      <field>
-        <name>week_of_month_name</name>
-      </field>
-      <field>
-        <name>month_sk</name>
-      </field>
-      <field>
-        <name>quarter_sk</name>
-      </field>
-      <field>
-        <name>year_sk</name>
-      </field>
-      <field>
-        <name>year_sort_number</name>
-      </field>
-      <field>
-        <name>day_of_week_sort_name</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>848</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>v_date</name>
-        <rename>IN_DATE</rename>
-      </field>
-      <field>
-        <name>START_DAY</name>
-      </field>
-      <field>
-        <name>Days_since</name>
-      </field>
-      <field>
-        <name>Year</name>
-      </field>
-      <field>
-        <name>Month</name>
-      </field>
-      <field>
-        <name>DayOfYear</name>
-      </field>
-      <field>
-        <name>DayOfMonth</name>
-      </field>
-      <field>
-        <name>DayOfWeek</name>
-      </field>
-      <field>
-        <name>WeekOfYear</name>
-      </field>
-      <field>
-        <name>Quarter</name>
-      </field>
-      <field>
-        <name>date_tk</name>
-      </field>
-      <field>
-        <name>QuarterName</name>
-      </field>
-      <field>
-        <name>YearQuarterName</name>
-      </field>
-      <field>
-        <name>DayOfWeekDesc</name>
-      </field>
-      <field>
-        <name>DayOfWeekShortDesc</name>
-      </field>
-      <field>
-        <name>DayofWeekendInd</name>
-      </field>
-      <field>
-        <name>MonthDesc</name>
-      </field>
-      <field>
-        <name>MonthShortDesc</name>
-      </field>
-      <field>
-        <name>week_of_month_number</name>
-      </field>
-      <field>
-        <name>week_of_month_name</name>
-      </field>
-      <field>
-        <name>week_name</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>desde 2007</name>
-    <type>RowGenerator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>START_DAY</name>
-        <type>Date</type>
-        <format>yyyyMMdd</format>
-        <currency />
-        <decimal />
-        <group />
-        <nullif>20060101</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <limit>40000</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms />
-    <row_time_field />
-    <last_time_field />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>528</yloc>
+      <xloc>288</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2650,6 +702,7 @@ left join ClasseApropriacaoUtil on ServicoOperadora.ClasseApro=ClasseApropriacao
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -2658,8 +711,8 @@ left join ClasseApropriacaoUtil on ServicoOperadora.ClasseApro=ClasseApropriacao
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>400</yloc>
+      <xloc>96</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2695,6 +748,7 @@ order by 1</sql>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -2703,381 +757,8 @@ order by 1</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_canal_atendimento</name>
-    <type>DataGrid</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>codigo</name>
-        <type>Integer</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>nome</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>95</item>
-        <item>Mídia Eletrônica</item>
-      </line>
-      <line>
-        <item>1</item>
-        <item>Balcão</item>
-      </line>
-      <line>
-        <item>2</item>
-        <item>Fax</item>
-      </line>
-      <line>
-        <item>3</item>
-        <item>Tele atendimento</item>
-      </line>
-      <line>
-        <item>4</item>
-        <item>U.R.A</item>
-      </line>
-      <line>
-        <item>90</item>
-        <item>Online</item>
-      </line>
-    </data>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_cidade</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>CARDIO</connection>
-    <sql>Select
-	codigo,
-	Nome,
-	UF
-from CidadePais
-order by 1</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
+      <xloc>96</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim_prestador</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>UERP</connection>
-    <sql>SELECT "cadastro_prestador"."id_referencia" prestador_autoid, 
-       "cadastro_prestador"."codigo" prestador_codigo, 
-       "cadastro_pessoa"."nome" prestador_nome, 
-       "cadastro_prestador"."ativo" prestador_ativo,
-       "cadastro_prestador"."inicio_vigencia" prestador_inicio_vigencia,
-       "cadastro_prestador"."fim_vigencia" prestador_fim_vigencia,
-       "cadastro_prestadorclasse"."codigo" classe_codigo, 
-       "cadastro_prestadorclasse"."nome" classe_nome,
-
-		Max("cadastro_cidadepais"."codigo") filter (WHERE ( 
-                                "cadastro_enderecopessoa"."ativo" = true 
-                AND             "cadastro_enderecopessoa"."para_publicacao" = true)) AS "cidade_codigo",
-
-
-		Max("cadastro_cidadepais"."nome") filter (WHERE ( 
-                                "cadastro_enderecopessoa"."ativo" = true 
-                AND             "cadastro_enderecopessoa"."para_publicacao" = true)) AS "cidade_nome",
-
-		Max("cadastro_cidadepais"."uf") filter (WHERE ( 
-                                "cadastro_enderecopessoa"."ativo" = true 
-                AND             "cadastro_enderecopessoa"."para_publicacao" = true)) AS "cidade_uf"
-
-
-
-FROM   "cadastro_prestador" 
-       INNER JOIN "cadastro_pessoa" 
-               ON ( "cadastro_prestador"."pessoa_id" = "cadastro_pessoa"."id" ) 
-       LEFT OUTER JOIN "cadastro_enderecopessoa" 
-                    ON ( "cadastro_pessoa"."id" = 
-                       "cadastro_enderecopessoa"."pessoa_id" ) 
-       LEFT OUTER JOIN "cadastro_cidadepais" 
-                    ON ( "cadastro_enderecopessoa"."cidade_pais_id" = 
-                         "cadastro_cidadepais"."id" ) 
-       INNER JOIN "cadastro_prestadorclasse" 
-               ON ( "cadastro_prestador"."classe_id" = 
-                  "cadastro_prestadorclasse"."id" ) 
-GROUP  BY "cadastro_prestador"."id", 
-          "cadastro_pessoa"."nome", 
-          "cadastro_prestadorclasse"."codigo", 
-          "cadastro_prestadorclasse"."nome" </sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_canal_atendimento</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_solicitacao_canal_atendimento</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>N</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>codigo</column_name>
-        <stream_name>codigo</stream_name>
-      </field>
-      <field>
-        <column_name>nome</column_name>
-        <stream_name>nome</stream_name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_cidade</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_cidade</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>codigo</column_name>
-        <stream_name>codigo</stream_name>
-      </field>
-      <field>
-        <column_name>nome</column_name>
-        <stream_name>nome</stream_name>
-      </field>
-      <field>
-        <column_name>uf</column_name>
-        <stream_name>uf</stream_name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_prestador</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_prestador</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>prestador_autoid</column_name>
-        <stream_name>prestador_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_codigo</column_name>
-        <stream_name>prestador_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_nome</column_name>
-        <stream_name>prestador_nome</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_ativo</column_name>
-        <stream_name>prestador_ativo</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_inicio_vigencia</column_name>
-        <stream_name>prestador_inicio_vigencia</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_fim_vigencia</column_name>
-        <stream_name>prestador_fim_vigencia</stream_name>
-      </field>
-      <field>
-        <column_name>classe_codigo</column_name>
-        <stream_name>classe_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>classe_nome</column_name>
-        <stream_name>classe_nome</stream_name>
-      </field>
-      <field>
-        <column_name>cidade_codigo</column_name>
-        <stream_name>cidade_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>cidade_nome</column_name>
-        <stream_name>cidade_nome</stream_name>
-      </field>
-      <field>
-        <column_name>cidade_uf</column_name>
-        <stream_name>cidade_uf</stream_name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3151,6 +832,7 @@ GROUP  BY "cadastro_prestador"."id",
         <stream_name>tipo_servico</stream_name>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3159,8 +841,8 @@ GROUP  BY "cadastro_prestador"."id",
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>400</yloc>
+      <xloc>304</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3218,6 +900,7 @@ GROUP  BY "cadastro_prestador"."id",
         <stream_name>unimed_cidade_uf</stream_name>
       </field>
     </fields>
+    <attributes />
     <cluster_schema />
     <remotesteps>
       <input>
@@ -3226,8 +909,263 @@ GROUP  BY "cadastro_prestador"."id",
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>320</yloc>
+      <xloc>304</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_canal_atendimento</name>
+    <type>DataGrid</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>codigo</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>nome</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>95</item>
+        <item>Mídia Eletrônica</item>
+      </line>
+      <line>
+        <item>1</item>
+        <item>Balcão</item>
+      </line>
+      <line>
+        <item>2</item>
+        <item>Fax</item>
+      </line>
+      <line>
+        <item>3</item>
+        <item>Tele atendimento</item>
+      </line>
+      <line>
+        <item>4</item>
+        <item>U.R.A</item>
+      </line>
+      <line>
+        <item>90</item>
+        <item>Online</item>
+      </line>
+    </data>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_canal_atendimento</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_solicitacao_canal_atendimento</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim_prestador</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <sql>Select 
+	PrestadorServico.AutoId as prestador_autoid,
+	PrestadorServico.Codigo as prestador_codigo,
+	Pessoa.Nome as prestador_nome,
+	PrestadorServico.InicioVigencia as prestador_inicio_vigencia,
+	ClassePrestador.Codigo as prestador_classe_codigo,
+	ClassePrestador.Nome as prestador_classe_nome,
+	Endereco.Codigo as prestador_cidade_codigo,
+	Endereco.Nome as prestador_cidade_nome
+from PrestadorServico
+inner join ClassePrestador on PrestadorServico.Classe=ClassePrestador.Codigo
+inner join Pessoa on PrestadorServico.Pessoa=Pessoa.AutoId
+CROSS APPLY (
+	SELECT top 1 CidadePais.Codigo, CidadePais.UF, CidadePais.Nome
+	from EnderecoPessoa 
+	inner join CidadePais on EnderecoPessoa.Cidade=CidadePais.Codigo
+	where 
+		Pessoa=Pessoa.AutoId
+		and EnderecoPessoa.FimVigencia is Null
+		and EnderecoPessoa.ParaPublicacao=1
+	) Endereco</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_prestador</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_prestador</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>prestador_autoid</column_name>
+        <stream_name>prestador_autoid</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_codigo</column_name>
+        <stream_name>prestador_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_nome</column_name>
+        <stream_name>prestador_nome</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_inicio_vigencia</column_name>
+        <stream_name>prestador_inicio_vigencia</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_classe_codigo</column_name>
+        <stream_name>prestador_classe_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_classe_nome</column_name>
+        <stream_name>prestador_classe_nome</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_cidade_codigo</column_name>
+        <stream_name>prestador_cidade_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>prestador_cidade_nome</column_name>
+        <stream_name>prestador_cidade_nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3236,4 +1174,5 @@ GROUP  BY "cadastro_prestador"."id",
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
+  <attributes />
 </transformation>
