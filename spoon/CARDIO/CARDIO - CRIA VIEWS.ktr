@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/01/14 13:41:03.646</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/15 09:23:22.284</modified_date>
+    <modified_date>2019/01/15 17:02:11.219</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -492,10 +492,134 @@
   <order>
     <hop>
       <from>drop if exist unimed_bi_custo_assistencial</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
       <to>cria view unimed_bi_custo_assistencial</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>cria view unimed_bi_custo_assistencial</name>
+    <type>ExecSQL</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>CREATE VIEW [dbo].unimed_bi_custo_assistencial 
+AS
+
+select
+	DISTINCT ItemEvento.Autoid as item_evento_autoid,
+	Evento.Autoid as evento_autoid,
+	lotedocservico.compapresentacao as competencia_apresentacao,
+	Evento.DataAbertura as evento_data,
+	ItemEvento.QteUtil as quantidade,
+	CAST(CONVERT(VARCHAR(10), Evento.DataAbertura, 112) as int) as date_sk,
+	SUM(case TipoValorPag 
+           when 1 then totalpago*-1
+           when 2 then totalpago*1
+		end
+	) over (partition by ItemEvento.Autoid) as valor_pago,
+    SUM(case TipoValorCobr 
+    		when 1 then TotalCobrado*-1
+        	when 2 then TotalCobrado*1
+        end
+	) over (partition by ItemEvento.Autoid) as valor_cobrado,
+	compvlitemevento.Prestador as prestador_autoid,
+	ServicoOperadora.Autoid as servico_autoid,
+	pAt.Autoid as unimed_atendimento_autoid,
+	pCb.Autoid as unimed_cobranca_autoid,
+	pEx.Autoid as prestador_externo_autoid,
+	case
+		when SolicitacaoServico.Solicitante is Null then ItemEvento.SolicitanteExt
+		else SolicitacaoServico.Solicitante
+	end as solicitante_id,
+	case SolicitacaoServico.TipoAdmissao
+		when 4 then 'Urgência / Emergência'
+		when 9 then 'Eletiva / Programada / Rotina'
+		else 'Não Informado'
+	end as carater_atendimento
+
+from compvlitemevento 
+	inner join itemevento on compvlitemevento.itemevento = itemevento.autoid
+	inner join evento on itemevento.evento = evento.autoid
+	inner join lotedocservico on evento.lote = lotedocservico.autoid
+	inner join beneficiario on evento.beneficiario = beneficiario.autoid
+	-- Servico Operadora
+	inner join ServicoOperadora on ItemEvento.Servico = ServicoOperadora.Autoid
+	-- Unimed Atendimento e Cobranca
+	left join PrestadorServico pAt on evento.LcAt=pAt.AutoId
+	left join PrestadorServico pCb on evento.LcCobranca=pCb.AutoId
+	-- Prestador Externo
+	left join PrestadorServico pEx on evento.LocalExecucaoExt=pEx.AutoId
+	-- Solicitante do Evento
+	left join SolicitacaoServico on ItemEvento.Autorizacao=SolicitacaoServico.AutoId
+where 
+	(itemevento.parecerauditoria = 0 or itemevento.parecerauditoria = 2)
+	--and left(lotedocservico.compapresentacao, 4) in (2017, 2018)
+	-- and lotedocservico.compapresentacao = 201701
+    --and PrestadorServico.Codigo = '202310000680'
+    --and CidadePais.Codigo = 2060
+    --and PrestadorServico.Classe = 3
+    --and itemevento.AutoId=9407349</sql>
+    <set_params>N</set_params>
+    <insert_field />
+    <update_field />
+    <delete_field />
+    <read_field />
+    <arguments>
+    </arguments>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>drop if exist unimed_bi_custo_assistencial</name>
     <type>ExecSQL</type>
@@ -531,108 +655,6 @@ DROP VIEW [dbo].[unimed_bi_custo_assistencial]</sql>
     </remotesteps>
     <GUI>
       <xloc>176</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>cria view unimed_bi_custo_assistencial</name>
-    <type>ExecSQL</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>CARDIO</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>CREATE VIEW [dbo].unimed_bi_custo_assistencial 
-AS
-
-select
-	ItemEvento.Autoid as item_evento_autoid,
-	lotedocservico.compapresentacao as competencia_apresentacao,
-	Evento.DataAbertura as evento_data,
-	CAST(CONVERT(VARCHAR(10), Evento.DataAbertura, 112) as int) as date_sk,
-	SUM(case TipoValorPag 
-           when 1 then totalpago*-1
-           when 2 then totalpago*1
-		end
-	) as valor_pago,
-    SUM(case TipoValorCobr 
-    		when 1 then TotalCobrado*-1
-        	when 2 then TotalCobrado*1
-        end
-	) as valor_cobrado,           
-	PrestadorServico.Autoid AS prestador_autoid,
-	PrestadorServico.Classe AS prestador_classe,
-	CidadePais.Codigo as cidade_codigo,
-	ServicoOperadora.Nome as servico_nome,
-	ServicoOperadora.Autoid as servico_autoid,
-	pAt.Autoid as unimed_atendimento_autoid,
-	pCb.Autoid as unimed_cobranca_autoid,
-	pEx.Autoid as prestador_externo_autoid
-
-from compvlitemevento 
-	inner join itemevento on compvlitemevento.itemevento = itemevento.autoid
-	inner join evento on itemevento.evento = evento.autoid
-	inner join lotedocservico on evento.lote = lotedocservico.autoid
-	inner join beneficiario on evento.beneficiario = beneficiario.autoid
-	-- Prestador Servico
-	left join PrestadorServico on Evento.LocalExecucao=PrestadorServico.AutoId
-	left join Pessoa on PrestadorServico.Pessoa=Pessoa.AutoId
-	left join EnderecoPessoa on EnderecoPessoa.Pessoa=PrestadorServico.Pessoa and EnderecoPessoa.ParaPublicacao=1 and EnderecoPessoa.FimVigencia is Null and Enderecopessoa.Tipo=2
-	left join CidadePais on EnderecoPessoa.Cidade=CidadePais.Codigo
-	-- Servico Operadora
-	inner join ServicoOperadora on ItemEvento.Servico = ServicoOperadora.Autoid
-	-- Unimed Atendimento e Cobranca
-	left join PrestadorServico pAt on evento.LcAt=pAt.AutoId
-	left join PrestadorServico pCb on evento.LcCobranca=pCb.AutoId
-	-- Prestador Externo
-	left join PrestadorServico pEx on evento.LocalExecucaoExt=pEx.AutoId
-where 
-	(itemevento.parecerauditoria = 0 or itemevento.parecerauditoria = 2)
-	-- and lotedocservico.compapresentacao >= 201701
-    --and PrestadorServico.Codigo = '202310000680'
-    --and CidadePais.Codigo = 2060
-    --and PrestadorServico.Classe = 3
-group by
-	ItemEvento.Autoid, 
-	lotedocservico.CompApresentacao, 
-	CidadePais.Codigo,
-	CidadePais.Nome,
-	Pessoa.Nome,
-	PrestadorServico.Autoid,
-	PrestadorServico.Classe,
-	ServicoOperadora.Nome,
-	ServicoOperadora.Autoid,
-	Evento.DataAbertura,
-	pAt.Autoid,
-	pCb.Autoid,
-	pEx.Autoid,
-	lotedocservico.compapresentacao</sql>
-    <set_params>N</set_params>
-    <insert_field />
-    <update_field />
-    <delete_field />
-    <read_field />
-    <arguments>
-    </arguments>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
