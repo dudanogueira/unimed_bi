@@ -48,19 +48,19 @@
       <Hierarchy name="Classe" visible="true" hasAll="true" primaryKey="prestador_autoid">
         <Table name="dim_prestador" schema="public">
         </Table>
-        <Level name="Classe" visible="true" column="classe_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Classe" visible="true" column="prestador_classe_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="UF" visible="true" hasAll="true" primaryKey="prestador_autoid">
         <Table name="dim_prestador" schema="public">
         </Table>
-        <Level name="UF" visible="true" column="cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="UF" visible="true" column="prestador_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Cidade" visible="true" hasAll="true" primaryKey="prestador_autoid">
         <Table name="dim_prestador" schema="public">
         </Table>
-        <Level name="Cidade" visible="true" column="cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Cidade" visible="true" column="prestador_cidade_codigo" nameColumn="prestador_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
