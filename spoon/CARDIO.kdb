@@ -1,6 +1,6 @@
   <connection>
     <name>CARDIO</name>
-    <server>192.0.0.192</server>
+    <server>192.0.0.4</server>
     <type>MSSQL</type>
     <access>Native</access>
     <database>CARDIO</database>

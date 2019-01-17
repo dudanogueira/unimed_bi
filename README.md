@@ -40,11 +40,13 @@ que será usado como nosso DatawareHouse
 ## CUBOS PARA CARDIO
 - Custos Assistenciais
   - Fato: Cada Item Evento
-  - Medidas: Valor Pago (ao prestador), Valor Cobrado (do beneficiário), Quantidade (ainda precisa usar o campo valor utilizado)
+  - Medidas: Valor Pago (ao prestador), Valor Cobrado (do beneficiário), Quantidade
   - Dimensão Tempo (Ano, Trimestre, Mês)
   - Unimed de Atendimento (UF, Cidade, Nome)
   - Unimed de Cobrança (UF, Cidade, Nome)
-  - Procedimento (Nome, Grupo, Codigo)
+  - Procedimento (Nome, Grupo, Classe, Codigo)
+  - Natureza da Admissão
+  - Breve: Beneficiário (Sexo, Idade), Contrato (Tipo - Empresarial, Adesão, Individual, etc)
 - Receitas (em breve)
 
 ## CUBOS PARA UERP

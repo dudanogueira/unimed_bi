@@ -1,12 +1,11 @@
 <transformation>
   <info>
-    <name>CARDIO - FATO CUSTO ASSISTENCIAL</name>
+    <name>INTEGRIDADE DE DADOS</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
-    <directory>/CARDIO</directory>
+    <directory>/CARDIO/TESTES</directory>
     <parameters>
     </parameters>
     <log>
@@ -427,65 +426,35 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/12/24 08:38:11.382</created_date>
+    <created_date>2019/01/16 15:57:12.712</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/16 16:03:20.512</modified_date>
+    <modified_date>2019/01/16 18:56:36.565</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>TESTA SE EXISTE MAIS DE UMA UNIMED NA MESMA CIDADE</note>
+      <xloc>160</xloc>
+      <yloc>48</yloc>
+      <width>354</width>
+      <heigth>27</heigth>
+      <fontname>Noto Sans</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
-  <connection>
-    <name>BI</name>
-    <server>127.0.0.1</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>unimed_bi</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4be17a77ddb96add3</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>CARDIO</name>
     <server>192.0.0.4</server>
@@ -543,117 +512,13 @@
   </connection>
   <order>
     <hop>
-      <from>pega custo assistencial</from>
-      <to>Insere Eventos</to>
+      <from>dim unimed</from>
+      <to>Dummy (do nothing)</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Insere Eventos</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>fato_custo_assistencial</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>item_evento_autoid</column_name>
-        <stream_name>item_evento_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>evento_autoid</column_name>
-        <stream_name>evento_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>competencia_apresentacao</column_name>
-        <stream_name>competencia_apresentacao</stream_name>
-      </field>
-      <field>
-        <column_name>evento_data</column_name>
-        <stream_name>evento_data</stream_name>
-      </field>
-      <field>
-        <column_name>quantidade</column_name>
-        <stream_name>quantidade</stream_name>
-      </field>
-      <field>
-        <column_name>date_sk</column_name>
-        <stream_name>date_sk</stream_name>
-      </field>
-      <field>
-        <column_name>valor_pago</column_name>
-        <stream_name>valor_pago</stream_name>
-      </field>
-      <field>
-        <column_name>valor_cobrado</column_name>
-        <stream_name>valor_cobrado</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_autoid</column_name>
-        <stream_name>prestador_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>servico_autoid</column_name>
-        <stream_name>servico_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>unimed_atendimento_autoid</column_name>
-        <stream_name>unimed_atendimento_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>unimed_cobranca_autoid</column_name>
-        <stream_name>unimed_cobranca_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>prestador_externo_autoid</column_name>
-        <stream_name>prestador_externo_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>solicitante_id</column_name>
-        <stream_name>solicitante_id</stream_name>
-      </field>
-      <field>
-        <column_name>carater_atendimento</column_name>
-        <stream_name>carater_atendimento</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>pega custo assistencial</name>
+    <name>dim unimed</name>
     <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
@@ -664,8 +529,45 @@
       <schema_name />
     </partitioning>
     <connection>CARDIO</connection>
-    <sql>select * from unimed_bi_custo_assistencial
-where YEAR(evento_data) in (2017, 2018)</sql>
+    <sql>-- BUSCA UNIMEDS QUE POSSUEM DUAS OU MAIS CIDADES
+-- EM GERAL OU É FEDERAÇÃO OU ENTÃO É ERRO NO CADASTRO
+-- QUE PODE AFETAR SOMAS AGRUPADAS POR ESTADO
+
+Select
+	PrestadorServico.Autoid as unimed_autoid,
+	PrestadorServico.Codigo as unimed_codigo, 
+	Pessoa.Nome  as unimed_nome,
+	Pessoa.NomeReduzido  as unimed_nome_reduzido,
+	CidadePais.Nome as unimed_cidade_nome,
+	CidadePais.Codigo as unimed_cidade_codigo,
+	CidadePais.UF as unimed_cidade_uf
+	
+from PrestadorServico 
+inner join Pessoa on PrestadorServico.Pessoa=Pessoa.AutoId
+left join EnderecoPessoa on EnderecoPessoa.Pessoa=PrestadorServico.Pessoa and EnderecoPessoa.FimVigencia is Null
+left join CidadePais on EnderecoPessoa.Cidade=CidadePais.Codigo
+
+where 
+	PrestadorServico.ELcAt = 1
+	and CidadePais.Codigo in (
+	
+
+		Select
+			CidadePais.Codigo
+		from PrestadorServico 
+		inner join Pessoa on PrestadorServico.Pessoa=Pessoa.AutoId
+		left join EnderecoPessoa on EnderecoPessoa.Pessoa=PrestadorServico.Pessoa and EnderecoPessoa.FimVigencia is Null
+		left join CidadePais on EnderecoPessoa.Cidade=CidadePais.Codigo
+
+		where 
+			PrestadorServico.ELcAt = 1
+		group by 
+			CidadePais.Codigo having COUNT(PrestadorServico.Autoid) >= 2
+	
+	
+	)
+order by CidadePais.Nome
+</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -680,8 +582,33 @@ where YEAR(evento_data) in (2017, 2018)</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>272</yloc>
+      <xloc>186</xloc>
+      <yloc>100</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>96</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
