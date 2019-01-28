@@ -72,6 +72,14 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="solicitante_id" name="Solicitante">
+      <Hierarchy name="Solicitante" visible="true" hasAll="true">
+        <Table name="dim_prestador" schema="public" alias="">
+        </Table>
+        <Level name="Solicitante" visible="true" column="prestador_autoid" nameColumn="prestador_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Valor cobrado" column="valor_cobrado" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum">
     </Measure>
     <Measure name="Valor pago" column="valor_pago" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum">

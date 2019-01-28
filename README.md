@@ -47,6 +47,7 @@ que será usado como nosso DatawareHouse
   - Procedimento (Nome, Grupo, Classe, Codigo)
   - Natureza da Admissão
   - Breve: Beneficiário (Sexo, Idade), Contrato (Tipo - Empresarial, Adesão, Individual, etc)
+  - Solicitante (Nome, Classe, UF, Cidade)
 - Receitas (em breve)
 
 ## CUBOS PARA UERP
