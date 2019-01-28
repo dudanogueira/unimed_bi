@@ -30,3 +30,4 @@ services:
 volumes:
   pentaho-solutions:
   postgres_data:
+  

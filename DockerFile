@@ -4,6 +4,7 @@ MAINTAINER Duda Nogueira dudanogueira@gmail.com
 
 # Init ENV
 ENV PENTAHO_HOME /opt/pentaho
+ENV PENTAHO_SYSTEM /opt/pentaho/pentaho-server/pentaho-solutions/system/
 
 # Apply JAVA_HOME
 RUN . /etc/environment
@@ -61,7 +62,7 @@ RUN tar -zxf tmp.tar.gz && \
 
 # PIVOT 4 J
 RUN wget https://ci.greencatsoft.com/job/Pivot4J/439/artifact/pivot4j-pentaho/target/pivot4j-pentaho-1.0-SNAPSHOT-plugin.zip -O /tmp/pivot4j.zip
-RUN /usr/bin/unzip -q /tmp/pivot4j.zip -d $PENTAHO_HOME/pentaho-server/pentaho-solutions/system/ && \
+RUN /usr/bin/unzip -q /tmp/pivot4j.zip -d $PENTAHO_SYSTEM && \
     rm -f /tmp/pivot4j.zip
 
 # SAIKU - http://meteorite.bi
@@ -69,7 +70,7 @@ RUN /usr/bin/unzip -q /tmp/pivot4j.zip -d $PENTAHO_HOME/pentaho-server/pentaho-s
 # GET THE FREE LICENSE at http://meteorite.bi
 # the host of the license must match the container host
 RUN wget http://meteorite.bi/downloads/saiku-plugin-p7.1-3.90.zip -O /tmp/saiku.zip
-RUN /usr/bin/unzip -q /tmp/saiku.zip -d $PENTAHO_HOME/pentaho-server/pentaho-solutions/system/ && \
+RUN /usr/bin/unzip -q /tmp/saiku.zip -d $PENTAHO_SYSTEM && \
     rm -f /tmp/saiku.zip
 
 
@@ -77,16 +78,22 @@ EXPOSE 8080
 
 # PRE CONFIG THE DESIRED OPTIONS
 
-
-# this will remove the login hint feature
-# $PENTAHO_HOME pentaho-server/pentaho-solutions/system/pentaho.xml 
-# <login-show-sample-users-hint>false</login-show-sample-users-hint>
-
-# reference: https://help.pentaho.com/Documentation/8.1/Setup/Administration/User_Security/Pass_Authentication_Credentials_in_URL_Parameters
-# $PENTAHO_HOME pentaho-server/pentaho-solutions/system/security.properties
-# requestParameterAuthenticationEnabled=true
+#
+# REMOVE HINT DE USUARIOS NO LOGIN
+#
+RUN sed -i -e 's/<login-show-sample-users-hint>true<\/login-show-sample-users-hint>/<login-show-sample-users-hint>false<\/login-show-sample-users-hint>/g' $PENTAHO_SYSTEM/pentaho.xml
 
 
+#
+# PERMTIE LOGIN POR URL
+#
+RUN sed -i -e 's/requestParameterAuthenticationEnabled=false/requestParameterAuthenticationEnabled=true/g' $PENTAHO_SYSTEM/security.properties
+
+#
+# COPIA CONFIG QUE PERMITE EXPORTAR ANALISES DO SAIKU E DO PIVOT4J
+#
+
+COPY ./configs/importExport.xml $PENTAHO_SYSTEM/
 
 CMD ["sh", "/opt/pentaho/pentaho-server/start-pentaho.sh"]
 
