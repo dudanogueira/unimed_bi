@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/01/14 13:41:03.646</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/31 11:13:18.502</modified_date>
+    <modified_date>2019/01/31 17:56:42.361</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -511,7 +511,9 @@
 AS
 select 
 	DISTINCT ItemEvento.Autoid as item_evento_autoid,
+	Beneficiario.Contrato as contrato_autoid,
 	Evento.Autoid as evento_autoid,
+	evento.Beneficiario as beneficiario_autoid,
 	lotedocservico.compapresentacao as competencia_apresentacao,
 	Evento.DataAbertura as evento_data,
 	ItemEvento.QteUtil as quantidade,
@@ -540,7 +542,6 @@ select
 		when 9 then 'Eletiva / Programada / Rotina'
 		else 'Não Informado'
 	end as carater_atendimento,
-	evento.Beneficiario as beneficiario_autoid,
 	CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) as idade,
 	case
 		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) = Null then Null
@@ -575,11 +576,12 @@ from compvlitemevento
 	left join SolicitacaoServico on ItemEvento.Autorizacao=SolicitacaoServico.AutoId
 where 
 	(itemevento.parecerauditoria = 0 or itemevento.parecerauditoria = 2)
-	--and left(lotedocservico.compapresentacao, 4) in (2017, 2018)
-	-- and lotedocservico.compapresentacao = 201701
-    --and PrestadorServico.Codigo = '202310000680'
-    --and CidadePais.Codigo = 2060
-    --and PrestadorServico.Classe = 3</sql>
+	--	and itemevento.AutoId = 10581619
+	--  and left(lotedocservico.compapresentacao, 4) in (2017, 2018)
+	--  and lotedocservico.compapresentacao = 201701
+    --  and PrestadorServico.Codigo = '202310000680'
+    --  and CidadePais.Codigo = 2060
+    --  and PrestadorServico.Classe = 3</sql>
     <set_params>N</set_params>
     <insert_field />
     <update_field />

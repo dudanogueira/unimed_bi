@@ -46,8 +46,8 @@ que será usado como nosso DatawareHouse
   - Unimed de Cobrança (UF, Cidade, Nome)
   - Procedimento (Nome, Grupo, Classe, Codigo)
   - Natureza da Admissão
-  - Breve: Beneficiário (Sexo, Idade), 
-  - Breve: Contrato (Tipo - Empresarial, Adesão, Individual, etc)
+  - Beneficiário (Sexo, Idade, Faixa ANS), 
+  - Contrato (Grupo, Classe)
   - Solicitante (Nome, Classe, UF, Cidade)
 - Receitas (em breve)
 
