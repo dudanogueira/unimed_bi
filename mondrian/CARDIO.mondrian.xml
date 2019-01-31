@@ -37,6 +37,12 @@
         <Level name="UF" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
+      <Hierarchy name="Cidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+        <Table name="dim_unimed" schema="public">
+        </Table>
+        <Level name="Cidade" visible="true" column="unimed_cidade_codigo" nameColumn="unimed_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="prestador_autoid" highCardinality="false" name="Prestador Local">
       <Hierarchy name="Nome" visible="true" hasAll="true" primaryKey="prestador_autoid">
@@ -72,11 +78,41 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="solicitante_id" name="Solicitante">
+    <Dimension type="StandardDimension" visible="true" foreignKey="solicitante_id" highCardinality="false" name="Solicitante">
       <Hierarchy name="Solicitante" visible="true" hasAll="true">
-        <Table name="dim_prestador" schema="public" alias="">
+        <Table name="dim_prestador" schema="public">
         </Table>
         <Level name="Solicitante" visible="true" column="prestador_autoid" nameColumn="prestador_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Beneficiario">
+      <Hierarchy name="Faixa Et&#225;ria" visible="true" hasAll="true">
+        <Level name="Faixa Et&#225;ria" visible="true" column="faixa_etaria_ans" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Idade" visible="true" hasAll="true">
+        <Level name="Idade" visible="true" column="idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="unimed_cobranca_autoid" highCardinality="false" name="Unimed Cobran&#231;a">
+      <Hierarchy name="UF" visible="true" hasAll="true" primaryKey="unimed_autoid">
+        <Table name="dim_unimed" schema="public">
+        </Table>
+        <Level name="UF" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Cidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+        <Table name="dim_unimed" schema="public" alias="">
+        </Table>
+        <Level name="Cidade" visible="true" column="unimed_cidade_codigo" nameColumn="unimed_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Unidade" visible="true" hasAll="true">
+        <Table name="dim_unimed" schema="public" alias="">
+        </Table>
+        <Level name="Unidade" visible="true" column="unimed_nome" type="String" uniqueMembers="false" levelType="Regular">
         </Level>
       </Hierarchy>
     </Dimension>
