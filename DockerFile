@@ -96,7 +96,7 @@ RUN sed -i -e 's/requestParameterAuthenticationEnabled=false/requestParameterAut
 COPY ./configs/importExport.xml $PENTAHO_SYSTEM/
 
 
-COPY ./config/accessibility.properties /etc/java-8-openjdk/
+COPY ./configs/accessibility.properties /etc/java-8-openjdk/
 
 CMD ["sh", "/opt/pentaho/pentaho-server/start-pentaho.sh"]
 
