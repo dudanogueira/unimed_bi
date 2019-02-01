@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/01/14 13:41:03.646</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/31 17:56:42.361</modified_date>
+    <modified_date>2019/02/01 16:58:51.285</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -509,79 +509,104 @@
     <quoteString>N</quoteString>
     <sql>CREATE VIEW [dbo].unimed_bi_custo_assistencial 
 AS
-select 
-	DISTINCT ItemEvento.Autoid as item_evento_autoid,
-	Beneficiario.Contrato as contrato_autoid,
-	Evento.Autoid as evento_autoid,
-	evento.Beneficiario as beneficiario_autoid,
-	lotedocservico.compapresentacao as competencia_apresentacao,
-	Evento.DataAbertura as evento_data,
-	ItemEvento.QteUtil as quantidade,
-	CAST(CONVERT(VARCHAR(10), Evento.DataAbertura, 112) as int) as date_sk,
-	SUM(case TipoValorPag 
-           when 1 then totalpago*-1
-           when 2 then totalpago*1
-		end
-	) over (partition by ItemEvento.Autoid) as valor_pago,
-    SUM(case TipoValorCobr 
-    		when 1 then TotalCobrado*-1
-        	when 2 then TotalCobrado*1
-        end
-	) over (partition by ItemEvento.Autoid) as valor_cobrado,
-	compvlitemevento.Prestador as prestador_autoid,
-	ServicoOperadora.Autoid as servico_autoid,
-	pAt.Autoid as unimed_atendimento_autoid,
-	pCb.Autoid as unimed_cobranca_autoid,
-	pEx.Autoid as prestador_externo_autoid,
-	case
-		when SolicitacaoServico.Solicitante is Null then ItemEvento.SolicitanteExt
-		else SolicitacaoServico.Solicitante
-	end as solicitante_id,
-	case SolicitacaoServico.TipoAdmissao
-		when 4 then 'Urgência / Emergência'
-		when 9 then 'Eletiva / Programada / Rotina'
-		else 'Não Informado'
-	end as carater_atendimento,
-	CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) as idade,
-	case
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) = Null then Null
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 18 then '0 a 18 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 23 then '19 a 23 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 28 then '24 a 28 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 33 then '29 a 33 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 38 then '34 a 38 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 43 then '39 a 43 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 48 then '44 a 48 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 53 then '49 a 53 anos'
-		when CONVERT(int,ROUND(DATEDIFF(hour,pessoa.DataNascimento,Evento.DataAbertura)/8766.0,0)) &lt;= 58 then '54 a 58 anos'
-		else '59 anos ou mais'
-	end as faixa_etaria_ans
-	
 
-from compvlitemevento 
-	inner join itemevento on compvlitemevento.itemevento = itemevento.autoid
-	inner join evento on itemevento.evento = evento.autoid
-	inner join lotedocservico on evento.lote = lotedocservico.autoid
+SELECT 
+	DISTINCT ItemEvento.Autoid AS item_evento_autoid,
+	Beneficiario.Contrato AS contrato_autoid,
+	Evento.Autoid AS evento_autoid,
+	evento.Beneficiario AS beneficiario_autoid,
+	lotedocservico.compapresentacao AS competencia_apresentacao,
+	Evento.DataAbertura AS evento_data,
+	ItemEvento.QteUtil AS quantidade,
+	CAST(CONVERT(VARCHAR(10), Evento.DataAbertura, 112) AS INT) AS date_sk,
+	SUM(CASE TipoValorPag
+			WHEN 1
+				THEN totalpago * - 1
+			WHEN 2
+				THEN totalpago * 1
+			END) OVER (PARTITION BY ItemEvento.Autoid) AS valor_pago,
+	SUM(CASE TipoValorCobr
+			WHEN 1
+				THEN TotalCobrado * - 1
+			WHEN 2
+				THEN TotalCobrado * 1
+			END) OVER (PARTITION BY ItemEvento.Autoid) AS valor_cobrado,
+	compvlitemevento.Prestador AS prestador_autoid,
+	ServicoOperadora.Autoid AS servico_autoid,
+	pAt.Autoid AS unimed_atendimento_autoid,
+	pCb.Autoid AS unimed_cobranca_autoid,
+	pEx.Autoid AS prestador_externo_autoid,
+	CASE 
+		WHEN SolicitacaoServico.Solicitante IS NULL
+			THEN ItemEvento.SolicitanteExt
+		ELSE SolicitacaoServico.Solicitante
+		END AS solicitante_id,
+	CASE SolicitacaoServico.TipoAdmissao
+		WHEN 4
+			THEN 'Urgência / Emergência'
+		WHEN 9
+			THEN 'Eletiva / Programada / Rotina'
+		ELSE 'Não Informado'
+		END AS carater_atendimento,
+	CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) AS idade,
+	CASE 
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) = NULL
+			THEN NULL
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 18
+			THEN '0 a 18 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 23
+			THEN '19 a 23 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 28
+			THEN '24 a 28 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 33
+			THEN '29 a 33 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 38
+			THEN '34 a 38 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 43
+			THEN '39 a 43 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 48
+			THEN '44 a 48 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 53
+			THEN '49 a 53 anos'
+		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 58
+			THEN '54 a 58 anos'
+		ELSE '59 anos ou mais'
+		END AS faixa_etaria_ans
+FROM compvlitemevento WITH (NOLOCK)
+	INNER JOIN itemevento WITH (NOLOCK)
+		ON compvlitemevento.itemevento = itemevento.autoid
+	INNER JOIN evento WITH (NOLOCK)
+		ON itemevento.evento = evento.autoid
+	INNER JOIN lotedocservico WITH (NOLOCK)
+		ON evento.lote = lotedocservico.autoid
 	-- beneficiario e pessoa
-	inner join beneficiario on evento.beneficiario = beneficiario.autoid
-	inner join Pessoa on beneficiario.Pessoa=pEssoa.AutoId
+	INNER JOIN beneficiario WITH (NOLOCK)
+		ON evento.beneficiario = beneficiario.autoid
+	INNER JOIN Pessoa WITH (NOLOCK)
+		ON beneficiario.Pessoa = pEssoa.AutoId
 	-- Servico Operadora
-	inner join ServicoOperadora on ItemEvento.Servico = ServicoOperadora.Autoid
+	INNER JOIN ServicoOperadora WITH (NOLOCK)
+		ON ItemEvento.Servico = ServicoOperadora.Autoid
 	-- Unimed Atendimento e Cobranca
-	left join PrestadorServico pAt on evento.LcAt=pAt.AutoId
-	left join PrestadorServico pCb on evento.LcCobranca=pCb.AutoId
+	LEFT JOIN PrestadorServico pAt WITH (NOLOCK)
+		ON evento.LcAt = pAt.AutoId
+	LEFT JOIN PrestadorServico pCb WITH (NOLOCK)
+		ON evento.LcCobranca = pCb.AutoId
 	-- Prestador Externo
-	left join PrestadorServico pEx on evento.LocalExecucaoExt=pEx.AutoId
+	LEFT JOIN PrestadorServico pEx WITH (NOLOCK)
+		ON evento.LocalExecucaoExt = pEx.AutoId
 	-- Solicitante do Evento
-	left join SolicitacaoServico on ItemEvento.Autorizacao=SolicitacaoServico.AutoId
-where 
-	(itemevento.parecerauditoria = 0 or itemevento.parecerauditoria = 2)
+	LEFT JOIN SolicitacaoServico WITH (NOLOCK)
+		ON ItemEvento.Autorizacao = SolicitacaoServico.AutoId
+WHERE 
+	(itemevento.parecerauditoria = 0 OR itemevento.parecerauditoria = 2)
 	--	and itemevento.AutoId = 10581619
 	--  and left(lotedocservico.compapresentacao, 4) in (2017, 2018)
 	--  and lotedocservico.compapresentacao = 201701
-    --  and PrestadorServico.Codigo = '202310000680'
-    --  and CidadePais.Codigo = 2060
-    --  and PrestadorServico.Classe = 3</sql>
+	--  and PrestadorServico.Codigo = '202310000680'
+	--  and CidadePais.Codigo = 2060
+	--  and PrestadorServico.Classe = 3
+--	AND itemevento.autoid = 11996556</sql>
     <set_params>N</set_params>
     <insert_field />
     <update_field />
