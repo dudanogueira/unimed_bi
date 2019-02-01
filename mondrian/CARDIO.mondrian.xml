@@ -18,6 +18,12 @@
       <Level name="Trimestre" visible="true" column="quarter_sk" nameColumn="quarter_name" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
       </Level>
     </Hierarchy>
+    <Hierarchy name="Dia" visible="true" hasAll="true" allMemberCaption="Todos os Dias" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public" alias="">
+      </Table>
+      <Level name="Dia" visible="true" column="date_sk" nameColumn="day_desc" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Cube name="Custos Assistenciais" visible="true" cache="true" enabled="true">
     <Table name="fato_custo_assistencial" schema="public">
@@ -86,13 +92,25 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Beneficiario">
+    <Dimension type="StandardDimension" visible="true" foreignKey="beneficiario_autoid" highCardinality="false" name="Beneficiario">
       <Hierarchy name="Faixa Et&#225;ria" visible="true" hasAll="true">
         <Level name="Faixa Et&#225;ria" visible="true" column="faixa_etaria_ans" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Idade" visible="true" hasAll="true">
         <Level name="Idade" visible="true" column="idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Sexo" visible="true" hasAll="true" primaryKey="beneficiario_autoid">
+        <Table name="dim_beneficiario" schema="public" alias="">
+        </Table>
+        <Level name="Sexo" visible="true" column="pessoa_sexo" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Nome" visible="true" hasAll="true" primaryKey="beneficiario_autoid">
+        <Table name="dim_beneficiario" schema="public" alias="">
+        </Table>
+        <Level name="Nome" visible="true" column="nome" uniqueMembers="false">
         </Level>
       </Hierarchy>
     </Dimension>
