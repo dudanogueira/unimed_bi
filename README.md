@@ -45,10 +45,12 @@ que será usado como nosso DatawareHouse
   - Unimed de Atendimento (UF, Cidade, Nome)
   - Unimed de Cobrança (UF, Cidade, Nome)
   - Procedimento (Nome, Grupo, Classe, Codigo)
-  - Natureza da Admissão
+  - Natureza da Admissão (Urgência, Eletica)
   - Beneficiário (Sexo, Idade, Faixa ANS), 
   - Contrato (Grupo, Classe)
   - Solicitante (Nome, Classe, UF, Cidade)
+  - Grupo de Apropriação (Taxas, Consultas Intercambio, Tratamentos, etc)
+  - Classe de Apropriação (Exames, Filmes, etc)
 - Receitas (em breve)
 
 ## CUBOS PARA UERP

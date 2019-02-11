@@ -19,7 +19,7 @@
       </Level>
     </Hierarchy>
     <Hierarchy name="Dia" visible="true" hasAll="true" allMemberCaption="Todos os Dias" primaryKey="date_sk">
-      <Table name="dim_tempo" schema="public" alias="">
+      <Table name="dim_tempo" schema="public">
       </Table>
       <Level name="Dia" visible="true" column="date_sk" nameColumn="day_desc" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
       </Level>
@@ -31,22 +31,22 @@
     <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="date_sk" highCardinality="false">
     </DimensionUsage>
     <Dimension type="StandardDimension" visible="true" foreignKey="unimed_atendimento_autoid" highCardinality="false" name="Unimed Atendimento">
-      <Hierarchy name="Unidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+      <Hierarchy name="Unidade Atendimento" visible="true" hasAll="true" primaryKey="unimed_autoid">
         <Table name="dim_unimed" schema="public">
         </Table>
-        <Level name="Nome" visible="true" column="unimed_codigo" nameColumn="unimed_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Nome Atendimento" visible="true" column="unimed_codigo" nameColumn="unimed_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
-      <Hierarchy name="UF" visible="true" hasAll="true" primaryKey="unimed_autoid">
+      <Hierarchy name="UF Atendimento" visible="true" hasAll="true" primaryKey="unimed_autoid">
         <Table name="dim_unimed" schema="public">
         </Table>
-        <Level name="UF" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="UF Atendimento" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
-      <Hierarchy name="Cidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+      <Hierarchy name="Cidade Atendimento" visible="true" hasAll="true" primaryKey="unimed_autoid">
         <Table name="dim_unimed" schema="public">
         </Table>
-        <Level name="Cidade" visible="true" column="unimed_cidade_codigo" nameColumn="unimed_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Cidade Atendimento" visible="true" column="unimed_cidade_codigo" nameColumn="unimed_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -102,49 +102,65 @@
         </Level>
       </Hierarchy>
       <Hierarchy name="Sexo" visible="true" hasAll="true" primaryKey="beneficiario_autoid">
-        <Table name="dim_beneficiario" schema="public" alias="">
+        <Table name="dim_beneficiario" schema="public">
         </Table>
-        <Level name="Sexo" visible="true" column="pessoa_sexo" uniqueMembers="false">
+        <Level name="Sexo" visible="true" column="pessoa_sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Nome" visible="true" hasAll="true" primaryKey="beneficiario_autoid">
-        <Table name="dim_beneficiario" schema="public" alias="">
+        <Table name="dim_beneficiario" schema="public">
         </Table>
-        <Level name="Nome" visible="true" column="nome" uniqueMembers="false">
+        <Level name="Nome" visible="true" column="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="unimed_cobranca_autoid" highCardinality="false" name="Unimed Cobran&#231;a">
-      <Hierarchy name="UF" visible="true" hasAll="true" primaryKey="unimed_autoid">
+      <Hierarchy name="UF Cobran&#231;a" visible="true" hasAll="true" primaryKey="unimed_autoid">
         <Table name="dim_unimed" schema="public">
         </Table>
-        <Level name="UF" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="UF Cobran&#231;a" visible="true" column="unimed_cidade_uf" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
-      <Hierarchy name="Cidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+      <Hierarchy name="Cidade Cobran&#231;a" visible="true" hasAll="true" primaryKey="unimed_autoid">
         <Table name="dim_unimed" schema="public">
         </Table>
-        <Level name="Cidade" visible="true" column="unimed_cidade_codigo" nameColumn="unimed_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Cidade Cobran&#231;a" visible="true" column="unimed_cidade_codigo" nameColumn="unimed_cidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
-      <Hierarchy name="Unidade" visible="true" hasAll="true" primaryKey="unimed_autoid">
+      <Hierarchy name="Unidade Cobran&#231;a" visible="true" hasAll="true" primaryKey="unimed_autoid">
         <Table name="dim_unimed" schema="public">
         </Table>
-        <Level name="Unidade" visible="true" column="unimed_codigo" nameColumn="unimed_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Unidade Cobran&#231;a" visible="true" column="unimed_codigo" nameColumn="unimed_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="contrato_autoid" highCardinality="false" name="Contrato">
       <Hierarchy name="Grupo" visible="true" hasAll="true" primaryKey="contrato_autoid">
-        <Table name="dim_contrato" schema="public" alias="">
+        <Table name="dim_contrato" schema="public">
         </Table>
         <Level name="Grupo" visible="true" column="contrato_classe_grupo" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Classe" visible="true" hasAll="true" primaryKey="contrato_autoid">
-        <Table name="dim_contrato" schema="public" alias="">
+        <Table name="dim_contrato" schema="public">
         </Table>
-        <Level name="Classe" visible="true" column="contrato_classe" nameColumn="contrato_classe_nome" uniqueMembers="false">
+        <Level name="Classe" visible="true" column="contrato_classe" nameColumn="contrato_classe_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="classe_apropriacao_codigo" highCardinality="false" name="Classe">
+      <Hierarchy name="Classe" visible="true" hasAll="true">
+        <Table name="dim_classe_apropriacao" schema="public">
+        </Table>
+        <Level name="Classe" visible="true" column="codigo" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="grupo_apropriacao_codigo" name="Grupo">
+      <Hierarchy name="Grupo" visible="true" hasAll="true">
+        <Table name="dim_grupo_apropriacao" schema="public">
+        </Table>
+        <Level name="Grupo" visible="true" column="codigo" nameColumn="nome" uniqueMembers="false">
         </Level>
       </Hierarchy>
     </Dimension>

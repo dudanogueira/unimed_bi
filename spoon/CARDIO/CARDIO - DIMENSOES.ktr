@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2019/01/14 09:57:00.991</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/01/31 17:44:16.083</modified_date>
+    <modified_date>2019/02/11 18:39:47.632</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -582,7 +582,119 @@
       <to>insere_dim_contrato</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>DIM TIPO RECEITA</from>
+      <to>insere_dim_tipo_receita</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM GRUPO APROPRIACAO</from>
+      <to>insere_dim_grupo_apropriacao</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DIM CLASSE APROPRIACAO</from>
+      <to>insere_dim_classe_apropriacao</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Classifica Contrato</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+var contrato_classe_nome
+var contrato_classe_grupo
+
+
+if (contrato_classe == 7){
+	contrato_classe_nome = 'Aposentado / Demitido'
+	contrato_classe_grupo = 'Aposentado / Demitido'
+}
+
+if (contrato_classe == 1){
+	contrato_classe_nome = 'Individual'
+	contrato_classe_grupo = 'Individual'
+}
+
+if (contrato_classe == 2){
+	contrato_classe_nome = 'Empresarial com patrocínio'
+	contrato_classe_grupo = 'Empresarial'
+}
+
+if (contrato_classe == 3){
+	contrato_classe_nome = 'Empresarial sem patrocínio'
+	contrato_classe_grupo = 'Empresarial'
+}
+
+if (contrato_classe == 4){
+	contrato_classe_nome = 'Adesão com patrocínio'
+	contrato_classe_grupo = 'Adesão'
+}
+
+if (contrato_classe == 5){
+	contrato_classe_nome = 'Adesão sem patrocínio'
+	contrato_classe_grupo = 'Adesão'
+}
+
+if (contrato_classe == 8){
+	contrato_classe_nome = 'Auto Gestão'
+	contrato_classe_grupo = 'Auto Gestão'
+}
+
+if (contrato_classe == 99){
+	contrato_classe_nome = 'Eventual'
+	contrato_classe_grupo = 'Intercâmbio'
+}
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>contrato_classe_nome</name>
+        <rename>contrato_classe_nome</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>contrato_classe_grupo</name>
+        <rename>contrato_classe_grupo</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>DIM CIDADE</name>
     <type>TableInput</type>
@@ -612,6 +724,292 @@
     <GUI>
       <xloc>96</xloc>
       <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM CLASSE APROPRIACAO</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <sql>Select Codigo as codigo, Nome as nome from ClasseApropriacaoUtil</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM GRUPO APROPRIACAO</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <sql>Select Codigo as codigo, Nome as nome from grupoapropriacaoutil</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>736</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DIM TIPO RECEITA</name>
+    <type>DataGrid</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>codigo</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>nome</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>1</item>
+        <item>Mensalidade</item>
+      </line>
+      <line>
+        <item>2</item>
+        <item>Coparticipação</item>
+      </line>
+      <line>
+        <item>3</item>
+        <item>2° Via do Cartão</item>
+      </line>
+      <line>
+        <item>4</item>
+        <item>Ajuste</item>
+      </line>
+      <line>
+        <item>7</item>
+        <item>Imposto</item>
+      </line>
+      <line>
+        <item>123</item>
+        <item>Outros</item>
+      </line>
+      <line>
+        <item>999</item>
+        <item>Juros e Multa</item>
+      </line>
+      <line>
+        <item>6</item>
+        <item>Ajustes Diversos</item>
+      </line>
+    </data>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>640</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim beneficiario</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <sql>Select
+	Beneficiario.AutoId as beneficiario_autoid,
+	Pessoa.AutoId as pessoa_autoid,
+	Pessoa.Nome,
+	pessoa.Sexo as pessoa_sexo,
+	pessoa.DataNascimento as pessoa_nascimento,
+	
+(case
+		-- 7 APOSENTADO / DEMITIDO
+		when ModeloContrato.Codigo in (7, 100) and ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=1 then 7 -- aposentado / demitido
+
+		-- 1 INDIVIDUAL
+		when ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=3 then 1 
+
+		-- 2 EMPRESARIAL COM PATROCINIO
+		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=1 then 2
+
+		-- 3 EMPRESARIAL SEM PATROCINIO
+		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=3 then 3
+
+		-- 4 ADESAO COM PATROCINIO
+		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=1) then 4 
+
+		-- 4 ADESAO SEM PATROCINIO
+		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=3) then 5 
+
+		-- 8 AUTO GESTAO
+		when ModeloContrato.Codigo = 3 then 8 -- auto gestao
+
+		-- Eventual 
+		when ModeloContrato.TipoContingente = 3 then 99
+
+		end) as contrato_classe
+		
+from Beneficiario
+inner join Pessoa on Beneficiario.Pessoa = Pessoa.AutoId
+inner join Contrato on Beneficiario.Contrato = Contrato.AutoId
+inner join ModeloContrato on Contrato.Modelo=ModeloContrato.AutoId
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>dim contrato</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>CARDIO</connection>
+    <sql>Select
+	Contrato.AutoId as contrato_autoid,
+	Contrato.Codigo as contrato_codigo,
+	Pessoa.AutoId as pessoa_autoid,
+	Pessoa.Nome as contrato_nome,
+	ModeloContrato.Nome as modelo_nome,
+(case
+		-- 7 APOSENTADO / DEMITIDO
+		when ModeloContrato.Codigo in (7, 100) and ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=1 then 7 -- aposentado / demitido
+
+		-- 1 INDIVIDUAL
+		when ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=3 then 1 
+
+		-- 2 EMPRESARIAL COM PATROCINIO
+		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=1 then 2
+
+		-- 3 EMPRESARIAL SEM PATROCINIO
+		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=3 then 3
+
+		-- 4 ADESAO COM PATROCINIO
+		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=1) then 4 
+
+		-- 4 ADESAO SEM PATROCINIO
+		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=3) then 5 
+
+		-- 8 AUTO GESTAO
+		when ModeloContrato.Codigo = 3 then 8 -- auto gestao
+
+		-- Eventual 
+		when ModeloContrato.TipoContingente = 3 then 99
+
+		end) as contrato_classe
+		
+from Contrato
+inner join Pessoa on Contrato.Contratante = Pessoa.AutoId
+inner join ModeloContrato on Contrato.Modelo=ModeloContrato.AutoId
+
+order by 6</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -721,76 +1119,6 @@ order by 1</sql>
     <GUI>
       <xloc>96</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim beneficiario</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>CARDIO</connection>
-    <sql>Select
-	Beneficiario.AutoId as beneficiario_autoid,
-	Pessoa.AutoId as pessoa_autoid,
-	Pessoa.Nome,
-	pessoa.Sexo as pessoa_sexo,
-	pessoa.DataNascimento as pessoa_nascimento,
-	
-(case
-		-- 7 APOSENTADO / DEMITIDO
-		when ModeloContrato.Codigo in (7, 100) and ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=1 then 7 -- aposentado / demitido
-
-		-- 1 INDIVIDUAL
-		when ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=3 then 1 
-
-		-- 2 EMPRESARIAL COM PATROCINIO
-		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=1 then 2
-
-		-- 3 EMPRESARIAL SEM PATROCINIO
-		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=3 then 3
-
-		-- 4 ADESAO COM PATROCINIO
-		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=1) then 4 
-
-		-- 4 ADESAO SEM PATROCINIO
-		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=3) then 5 
-
-		-- 8 AUTO GESTAO
-		when ModeloContrato.Codigo = 3 then 8 -- auto gestao
-
-		-- Eventual 
-		when ModeloContrato.TipoContingente = 3 then 99
-
-		end) as contrato_classe
-		
-from Beneficiario
-inner join Pessoa on Beneficiario.Pessoa = Pessoa.AutoId
-inner join Contrato on Beneficiario.Contrato = Contrato.AutoId
-inner join ModeloContrato on Contrato.Modelo=ModeloContrato.AutoId
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -923,6 +1251,74 @@ CROSS APPLY (
     </GUI>
   </step>
   <step>
+    <name>insere_dim_beneficiario</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_beneficiario</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>beneficiario_autoid</column_name>
+        <stream_name>beneficiario_autoid</stream_name>
+      </field>
+      <field>
+        <column_name>pessoa_autoid</column_name>
+        <stream_name>pessoa_autoid</stream_name>
+      </field>
+      <field>
+        <column_name>Nome</column_name>
+        <stream_name>Nome</stream_name>
+      </field>
+      <field>
+        <column_name>pessoa_sexo</column_name>
+        <stream_name>pessoa_sexo</stream_name>
+      </field>
+      <field>
+        <column_name>pessoa_nascimento</column_name>
+        <stream_name>pessoa_nascimento</stream_name>
+      </field>
+      <field>
+        <column_name>contrato_classe</column_name>
+        <stream_name>contrato_classe</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>insere_dim_canal_atendimento</name>
     <type>TableOutput</type>
     <description />
@@ -1027,6 +1423,186 @@ CROSS APPLY (
     <GUI>
       <xloc>288</xloc>
       <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_classe_apropriacao</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_classe_apropriacao</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_contrato</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_contrato</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>contrato_autoid</column_name>
+        <stream_name>contrato_autoid</stream_name>
+      </field>
+      <field>
+        <column_name>contrato_codigo</column_name>
+        <stream_name>contrato_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>pessoa_autoid</column_name>
+        <stream_name>pessoa_autoid</stream_name>
+      </field>
+      <field>
+        <column_name>contrato_nome</column_name>
+        <stream_name>contrato_nome</stream_name>
+      </field>
+      <field>
+        <column_name>modelo_nome</column_name>
+        <stream_name>modelo_nome</stream_name>
+      </field>
+      <field>
+        <column_name>contrato_classe</column_name>
+        <stream_name>contrato_classe</stream_name>
+      </field>
+      <field>
+        <column_name>contrato_classe_nome</column_name>
+        <stream_name>contrato_classe_nome</stream_name>
+      </field>
+      <field>
+        <column_name>contrato_classe_grupo</column_name>
+        <stream_name>contrato_classe_grupo</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>insere_dim_grupo_apropriacao</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_grupo_apropriacao</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1195,6 +1771,58 @@ CROSS APPLY (
     </GUI>
   </step>
   <step>
+    <name>insere_dim_tipo_receita</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_tipo_receita</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>codigo</column_name>
+        <stream_name>codigo</stream_name>
+      </field>
+      <field>
+        <column_name>nome</column_name>
+        <stream_name>nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>640</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>insere_dim_unimed</name>
     <type>TableOutput</type>
     <description />
@@ -1263,316 +1891,6 @@ CROSS APPLY (
     <GUI>
       <xloc>304</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_beneficiario</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_beneficiario</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>beneficiario_autoid</column_name>
-        <stream_name>beneficiario_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>pessoa_autoid</column_name>
-        <stream_name>pessoa_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>Nome</column_name>
-        <stream_name>Nome</stream_name>
-      </field>
-      <field>
-        <column_name>pessoa_sexo</column_name>
-        <stream_name>pessoa_sexo</stream_name>
-      </field>
-      <field>
-        <column_name>pessoa_nascimento</column_name>
-        <stream_name>pessoa_nascimento</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_classe</column_name>
-        <stream_name>contrato_classe</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>dim contrato</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>CARDIO</connection>
-    <sql>Select
-	Contrato.AutoId as contrato_autoid,
-	Contrato.Codigo as contrato_codigo,
-	Pessoa.AutoId as pessoa_autoid,
-	Pessoa.Nome as contrato_nome,
-	ModeloContrato.Nome as modelo_nome,
-(case
-		-- 7 APOSENTADO / DEMITIDO
-		when ModeloContrato.Codigo in (7, 100) and ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=1 then 7 -- aposentado / demitido
-
-		-- 1 INDIVIDUAL
-		when ModeloContrato.TipoContratacao = 2	and ModeloContrato.ClasseContratacao=3 then 1 
-
-		-- 2 EMPRESARIAL COM PATROCINIO
-		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=1 then 2
-
-		-- 3 EMPRESARIAL SEM PATROCINIO
-		when ModeloContrato.TipoContratacao = 3 and ModeloContrato.ClasseContratacao=3 then 3
-
-		-- 4 ADESAO COM PATROCINIO
-		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=1) then 4 
-
-		-- 4 ADESAO SEM PATROCINIO
-		when (ModeloContrato.TipoContratacao=4 and ModeloContrato.ClasseContratacao=3) then 5 
-
-		-- 8 AUTO GESTAO
-		when ModeloContrato.Codigo = 3 then 8 -- auto gestao
-
-		-- Eventual 
-		when ModeloContrato.TipoContingente = 3 then 99
-
-		end) as contrato_classe
-		
-from Contrato
-inner join Pessoa on Contrato.Contratante = Pessoa.AutoId
-inner join ModeloContrato on Contrato.Modelo=ModeloContrato.AutoId
-
-order by 6</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Classifica Contrato</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-var contrato_classe_nome
-var contrato_classe_grupo
-
-
-if (contrato_classe == 7){
-	contrato_classe_nome = 'Aposentado / Demitido'
-	contrato_classe_grupo = 'Aposentado / Demitido'
-}
-
-if (contrato_classe == 1){
-	contrato_classe_nome = 'Individual'
-	contrato_classe_grupo = 'Individual'
-}
-
-if (contrato_classe == 2){
-	contrato_classe_nome = 'Empresarial com patrocínio'
-	contrato_classe_grupo = 'Empresarial'
-}
-
-if (contrato_classe == 3){
-	contrato_classe_nome = 'Empresarial sem patrocínio'
-	contrato_classe_grupo = 'Empresarial'
-}
-
-if (contrato_classe == 4){
-	contrato_classe_nome = 'Adesão com patrocínio'
-	contrato_classe_grupo = 'Adesão'
-}
-
-if (contrato_classe == 5){
-	contrato_classe_nome = 'Adesão sem patrocínio'
-	contrato_classe_grupo = 'Adesão'
-}
-
-if (contrato_classe == 8){
-	contrato_classe_nome = 'Auto Gestão'
-	contrato_classe_grupo = 'Auto Gestão'
-}
-
-if (contrato_classe == 99){
-	contrato_classe_nome = 'Eventual'
-	contrato_classe_grupo = 'Intercâmbio'
-}
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>contrato_classe_nome</name>
-        <rename>contrato_classe_nome</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>contrato_classe_grupo</name>
-        <rename>contrato_classe_grupo</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>insere_dim_contrato</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>dim_contrato</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>contrato_autoid</column_name>
-        <stream_name>contrato_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_codigo</column_name>
-        <stream_name>contrato_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>pessoa_autoid</column_name>
-        <stream_name>pessoa_autoid</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_nome</column_name>
-        <stream_name>contrato_nome</stream_name>
-      </field>
-      <field>
-        <column_name>modelo_nome</column_name>
-        <stream_name>modelo_nome</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_classe</column_name>
-        <stream_name>contrato_classe</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_classe_nome</column_name>
-        <stream_name>contrato_classe_nome</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_classe_grupo</column_name>
-        <stream_name>contrato_classe_grupo</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/01/14 13:41:03.646</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/02/01 16:58:51.285</modified_date>
+    <modified_date>2019/02/11 18:34:34.581</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -571,7 +571,9 @@ SELECT
 		WHEN CONVERT(INT, ROUND(DATEDIFF(hour, pessoa.DataNascimento, Evento.DataAbertura) / 8766.0, 0)) &lt;= 58
 			THEN '54 a 58 anos'
 		ELSE '59 anos ou mais'
-		END AS faixa_etaria_ans
+		END AS faixa_etaria_ans,
+		grupoapropriacaoutil.Codigo as grupo_apropriacao_codigo,
+		ServicoOperadora.ClasseApro as classe_apropriacao_codigo
 FROM compvlitemevento WITH (NOLOCK)
 	INNER JOIN itemevento WITH (NOLOCK)
 		ON compvlitemevento.itemevento = itemevento.autoid
@@ -579,25 +581,28 @@ FROM compvlitemevento WITH (NOLOCK)
 		ON itemevento.evento = evento.autoid
 	INNER JOIN lotedocservico WITH (NOLOCK)
 		ON evento.lote = lotedocservico.autoid
-	-- beneficiario e pessoa
+	
 	INNER JOIN beneficiario WITH (NOLOCK)
 		ON evento.beneficiario = beneficiario.autoid
 	INNER JOIN Pessoa WITH (NOLOCK)
 		ON beneficiario.Pessoa = pEssoa.AutoId
-	-- Servico Operadora
+	
 	INNER JOIN ServicoOperadora WITH (NOLOCK)
 		ON ItemEvento.Servico = ServicoOperadora.Autoid
-	-- Unimed Atendimento e Cobranca
+	
 	LEFT JOIN PrestadorServico pAt WITH (NOLOCK)
 		ON evento.LcAt = pAt.AutoId
 	LEFT JOIN PrestadorServico pCb WITH (NOLOCK)
 		ON evento.LcCobranca = pCb.AutoId
-	-- Prestador Externo
+	
 	LEFT JOIN PrestadorServico pEx WITH (NOLOCK)
 		ON evento.LocalExecucaoExt = pEx.AutoId
-	-- Solicitante do Evento
+	
 	LEFT JOIN SolicitacaoServico WITH (NOLOCK)
 		ON ItemEvento.Autorizacao = SolicitacaoServico.AutoId
+	
+	LEFT JOIN grupoapropriacaoutil WITH (NOLOCK)
+		ON evento.grupoapro = grupoapropriacaoutil.codigo		
 WHERE 
 	(itemevento.parecerauditoria = 0 OR itemevento.parecerauditoria = 2)
 	--	and itemevento.AutoId = 10581619
