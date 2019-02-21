@@ -18,13 +18,25 @@
       <Level name="Trimestre" visible="true" column="quarter_sk" nameColumn="quarter_name" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
       </Level>
     </Hierarchy>
+    <Hierarchy name="Dia" visible="true" hasAll="true" allMemberCaption="Todos os Dias" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Dia" visible="true" column="date_sk" nameColumn="day_desc" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Semana" visible="true" hasAll="true" allMemberCaption="Todas as Semanas" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Semana" visible="true" column="week_sk" nameColumn="week_name" type="Numeric" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
   </Dimension>
   <Cube name="Protocolos de Atendimento" visible="true" cache="true" enabled="true">
     <Table name="fato_atendimento_protocolos" schema="public">
     </Table>
     <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="date_sk" highCardinality="false">
     </DimensionUsage>
-    <Dimension type="StandardDimension" visible="true" foreignKey="canal" highCardinality="false" name="Canal">
+    <Dimension type="StandardDimension" visible="true" foreignKey="canal_codigo" highCardinality="false" name="Canal">
       <Hierarchy name="Canal" visible="true" hasAll="true">
         <Table name="dim_canal_atendimento_protocolo" schema="public">
         </Table>
@@ -51,6 +63,12 @@
         <Table name="dim_protocolo_categoria" schema="public">
         </Table>
         <Level name="Categoria" visible="true" column="id" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Beneficiario">
+      <Hierarchy name="Idade" visible="true" hasAll="true">
+        <Level name="Idade" visible="true" column="idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
