@@ -1,0 +1,60 @@
+<Schema name="ESMERALDA" description="ESMERALDA">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Tempo">
+    <Hierarchy name="Ano" visible="true" hasAll="true" allMemberCaption="Todos os Anos" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Ano" visible="true" column="year_sk" type="Numeric" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="M&#234;s" visible="true" hasAll="true" allMemberCaption="Todos os M&#234;ses" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="M&#234;s" visible="true" column="month_sk" nameColumn="month_name" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Trimestre" visible="true" hasAll="true" allMemberCaption="Todos os trimestres" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Trimestre" visible="true" column="quarter_sk" nameColumn="quarter_name" type="Numeric" uniqueMembers="false" levelType="TimeQuarters" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Dia" visible="true" hasAll="true" allMemberCaption="Todos os Dias" primaryKey="date_sk">
+      <Table name="dim_tempo" schema="public">
+      </Table>
+      <Level name="Dia" visible="true" column="date_sk" nameColumn="day_desc" type="Numeric" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Atendimentos" visible="true" cache="true" enabled="true">
+    <Table name="fato_esmeralda_atendimento" schema="public">
+    </Table>
+    <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="date_sk" highCardinality="false">
+    </DimensionUsage>
+    <Dimension type="StandardDimension" visible="true" foreignKey="paciente_id" highCardinality="false" name="Paciente">
+      <Hierarchy name="Sexo" visible="true" hasAll="true" primaryKey="paciente_id">
+        <Table name="dim_esmeralda_paciente" schema="public">
+        </Table>
+        <Level name="Sexo" visible="true" column="paciente_sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="procedimento_id" highCardinality="false" name="Procedimento">
+      <Hierarchy name="Procedimento" visible="true" hasAll="true">
+        <Table name="dim_esmeralda_procedimento" schema="public">
+        </Table>
+        <Level name="Procedimento" visible="true" column="procedimento_id" nameColumn="procedimento_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Setor" visible="true" hasAll="true">
+        <Table name="dim_esmeralda_procedimento" schema="public">
+        </Table>
+        <Level name="Setor" visible="true" column="procedimento_setor_id" nameColumn="procedimento_setor_nome" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Quantidade de Procedimentos" column="atendimento_procedimento_id" aggregator="count" visible="true">
+    </Measure>
+    <Measure name="Quantidade de Atendimentos" column="atendimento_id" aggregator="distinct-count" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
