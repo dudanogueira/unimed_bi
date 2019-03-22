@@ -52,9 +52,15 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Conv&#234;nio">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Conv&#234;nio">
       <Hierarchy visible="true" hasAll="true">
-        <Level name="Conv&#234;nio" visible="true" column="atendimento_convenio" uniqueMembers="false">
+        <Level name="Conv&#234;nio" visible="true" column="atendimento_convenio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Idade no Atendimento">
+      <Hierarchy name="Idade" visible="true" hasAll="true">
+        <Level name="Idade" visible="true" column="atendimento_idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
