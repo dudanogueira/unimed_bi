@@ -156,11 +156,11 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="grupo_apropriacao_codigo" name="Grupo">
+    <Dimension type="StandardDimension" visible="true" foreignKey="grupo_apropriacao_codigo" highCardinality="false" name="Grupo">
       <Hierarchy name="Grupo" visible="true" hasAll="true">
         <Table name="dim_grupo_apropriacao" schema="public">
         </Table>
-        <Level name="Grupo" visible="true" column="codigo" nameColumn="nome" uniqueMembers="false">
+        <Level name="Grupo" visible="true" column="codigo" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
