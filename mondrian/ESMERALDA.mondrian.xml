@@ -52,6 +52,12 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Conv&#234;nio">
+      <Hierarchy visible="true" hasAll="true">
+        <Level name="Conv&#234;nio" visible="true" column="atendimento_convenio" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Quantidade de Procedimentos" column="atendimento_procedimento_id" aggregator="count" visible="true">
     </Measure>
     <Measure name="Quantidade de Atendimentos" column="atendimento_id" aggregator="distinct-count" visible="true">
