@@ -100,7 +100,11 @@
         </Level>
       </Hierarchy>
       <Hierarchy name="Ano" visible="true" hasAll="true">
-        <Level name="Ano" visible="true" column="ano" uniqueMembers="false">
+        <Level name="ano" visible="true" column="ano" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="M&#234;s" visible="true" hasAll="true">
+        <Level name="Mes" visible="true" column="mes" uniqueMembers="false">
         </Level>
       </Hierarchy>
     </Dimension>
