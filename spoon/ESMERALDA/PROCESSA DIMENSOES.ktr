@@ -428,8 +428,8 @@
     <created_user>-</created_user>
     <created_date>2019/03/07 17:15:32.936</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/03/07 18:18:09.028</modified_date>
-    <key_for_session_key />
+    <modified_date>2019/04/01 10:14:58.910</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -551,46 +551,12 @@
       <to>escreve_dim_esmeralda_procedimento</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>puxa dimensao unidades</from>
+      <to>escreve_dim_esmeralda_unidade</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
-  <step>
-    <name>puxa dimensao paciente</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>ESMERALDA</connection>
-    <sql>Select
-	Cd_Paciente as paciente_id,
-	Sexo as paciente_sexo,
-	Data_Nascimento as paciente_nascimento,
-	Cidade.Nome
-	
-from Paciente
-inner join Cidade on Paciente.Cd_Cidade_Residencial=Cidade.Cd_Cidade</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>escreve_dim_esmeralda_paciente</name>
     <type>TableOutput</type>
@@ -652,45 +618,6 @@ inner join Cidade on Paciente.Cd_Cidade_Residencial=Cidade.Cd_Cidade</sql>
     </GUI>
   </step>
   <step>
-    <name>puxa dimensao procedimento</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>ESMERALDA</connection>
-    <sql>Select
-	Procedimento.Cd_Procedimento as procedimento_id,
-	procedimento.Descricao as procedimento_nome,
-	Setor.Descricao as procedimento_setor_nome,
-	Setor.Cd_Setor as procedimento_setor_id
-	
-from Procedimento
-inner join Setor on Procedimento.Cd_Setor=Setor.Cd_Setor</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>escreve_dim_esmeralda_procedimento</name>
     <type>TableOutput</type>
     <description />
@@ -747,6 +674,171 @@ inner join Setor on Procedimento.Cd_Setor=Setor.Cd_Setor</sql>
     <GUI>
       <xloc>336</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>puxa dimensao paciente</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ESMERALDA</connection>
+    <sql>Select
+	Cd_Paciente as paciente_id,
+	Sexo as paciente_sexo,
+	Data_Nascimento as paciente_nascimento,
+	Cidade.Nome
+	
+from Paciente
+inner join Cidade on Paciente.Cd_Cidade_Residencial=Cidade.Cd_Cidade</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>puxa dimensao procedimento</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ESMERALDA</connection>
+    <sql>Select
+	Procedimento.Cd_Procedimento as procedimento_id,
+	procedimento.Descricao as procedimento_nome,
+	Setor.Descricao as procedimento_setor_nome,
+	Setor.Cd_Setor as procedimento_setor_id
+	
+from Procedimento
+inner join Setor on Procedimento.Cd_Setor=Setor.Cd_Setor</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>escreve_dim_esmeralda_unidade</name>
+    <type>TableOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>BI</connection>
+    <schema />
+    <table>dim_esmeralda_unidade</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
+    <fields>
+      <field>
+        <column_name>unidade_codigo</column_name>
+        <stream_name>unidade_codigo</stream_name>
+      </field>
+      <field>
+        <column_name>unidade_nome</column_name>
+        <stream_name>unidade_nome</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>puxa dimensao unidades</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>ESMERALDA</connection>
+    <sql>Select 
+	Cd_Unidade as unidade_codigo, 
+	Descricao  as unidade_nome
+from Unidade</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

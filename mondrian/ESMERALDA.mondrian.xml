@@ -64,9 +64,33 @@
         </Level>
       </Hierarchy>
     </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="atendimento_unidade_codigo" highCardinality="false" name="Local de Coleta">
+      <Hierarchy name="Local de Coleta" visible="true" hasAll="true">
+        <Table name="dim_esmeralda_unidade" schema="public">
+        </Table>
+        <Level name="Local de Coleta" visible="true" column="unidade_codigo" nameColumn="unidade_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Fluxo Atendimento">
+      <Hierarchy name="Dia da Semana" visible="true" hasAll="true">
+        <Level name="Dia da Semana" visible="true" column="atendimento_dia_semana" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Hora" visible="true" hasAll="true">
+        <Level name="Hora" visible="true" column="atendimento_hora" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Minuto" visible="true" hasAll="true">
+        <Level name="Minuto" visible="true" column="atendimento_minuto" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
     <Measure name="Quantidade de Procedimentos" column="atendimento_procedimento_id" aggregator="count" visible="true">
     </Measure>
     <Measure name="Quantidade de Atendimentos" column="atendimento_id" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="Valor" column="atendimento_procedimento_valor" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>

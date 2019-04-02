@@ -75,4 +75,46 @@
     <Measure name="Quantidade" column="id" aggregator="distinct-count" visible="true">
     </Measure>
   </Cube>
+  <Cube name="Comiss&#227;o de Vendas" visible="true" cache="true" enabled="true">
+    <Table name="fato_vendas" schema="public" alias="">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" name="Vendedor">
+      <Hierarchy name="Vendedor" visible="true" hasAll="true">
+        <Level name="Vendedor" visible="true" column="vendedor_nome" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Classe Vendedor" visible="true" hasAll="true">
+        <Level name="Classe Vendedor" visible="true" column="vendedor_classe" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Cidade">
+      <Hierarchy name="Cidade" visible="true" hasAll="true">
+        <Level name="Cidade" visible="true" column="cidadepais_nome" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Compet&#234;ncia">
+      <Hierarchy name="Compet&#234;ncia" visible="true" hasAll="true">
+        <Level name="Compet&#234;ncia" visible="true" column="competencia" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Tipo de Venda">
+      <Hierarchy name="Tipo de Venda" visible="true" hasAll="true">
+        <Level name="Tipo de Venda" visible="true" column="tipo_venda" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Classe do Contrato">
+      <Hierarchy name="Classe do Contrato" visible="true" hasAll="true">
+        <Level name="Classe do Contrato" visible="true" column="contrato_classe" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Valor" column="comissao_paga" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Quantidade" column="beneficiario_codigo" aggregator="distinct-count" visible="true">
+    </Measure>
+  </Cube>
 </Schema>

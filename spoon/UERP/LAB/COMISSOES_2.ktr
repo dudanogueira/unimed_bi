@@ -1,11 +1,11 @@
 <transformation>
   <info>
-    <name>PROCESSA FATO - Atendimento</name>
+    <name>COMISSOES_2</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
-    <directory>/ESMERALDA</directory>
+    <directory>/UERP/LAB</directory>
     <parameters>
     </parameters>
     <log>
@@ -426,9 +426,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/03/07 17:01:46.673</created_date>
+    <created_date>2019/04/02 14:12:29.294</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/04/01 13:43:47.323</modified_date>
+    <modified_date>2019/04/02 15:00:10.113</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -486,11 +486,11 @@
     </attributes>
   </connection>
   <connection>
-    <name>ESMERALDA</name>
-    <server>192.0.0.4</server>
+    <name>CARDIO</name>
+    <server>192.0.0.192</server>
     <type>MSSQL</type>
     <access>Native</access>
-    <database>EV</database>
+    <database>CARDIO</database>
     <port>1433</port>
     <username>sa</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79bb7ed7c0ff88</password>
@@ -540,15 +540,243 @@
       </attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>INTRANET</name>
+    <server>192.0.0.209</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>intranet</database>
+    <port>5432</port>
+    <username>intranet</username>
+    <password>Encrypted 2be98afc86aa7f2b1a510a375daa69990</password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>UERP</name>
+    <server>127.0.0.1</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>uerp</database>
+    <port>15432</port>
+    <username>postgres</username>
+    <password>Encrypted </password>
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>EXTRA_OPTION_POSTGRESQL.stringtype</code>
+        <attribute>unspecified</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>15432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
-      <from>puxa fato atendimento</from>
-      <to>escreve_fato_atendimento</to>
+      <from>Puxa Beneficiários</from>
+      <to>Junta Dados Benef</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Junta Dados Benef</from>
+      <to>Registra BI</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Busca Vendas</from>
+      <to>Junta Classe Vendedor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Junta Classe Vendedor</from>
+      <to>Junta Dados Benef</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Classe Vendedor</from>
+      <to>Junta Classe Vendedor</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>escreve_fato_atendimento</name>
+    <name>Busca Vendas</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>INTRANET</connection>
+    <sql>select
+	SUM("comissao_vendas_comissaodevendas"."valor_comissionado") as "comissao_paga",
+	"comissao_vendas_competenciacomercial"."competencia",
+	"comissao_vendas_comissaodevendas"."beneficiario_codigo",
+	"comissao_vendas_comissaodevendas"."vendedor_nome",
+	"comissao_vendas_comissaodevendas"."vendedor_codigo",
+	"comissao_vendas_comissaodevendas"."cidadepais_nome"
+from
+	"comissao_vendas_comissaodevendas"
+inner join "comissao_vendas_competenciacomercial" on
+	("comissao_vendas_comissaodevendas"."competencia_comercial_id" = "comissao_vendas_competenciacomercial"."id")
+group by
+	"comissao_vendas_competenciacomercial"."competencia",
+	"comissao_vendas_comissaodevendas"."beneficiario_codigo",
+	"comissao_vendas_comissaodevendas"."vendedor_nome",
+	"comissao_vendas_comissaodevendas"."cidadepais_nome",
+	"comissao_vendas_comissaodevendas"."vendedor_codigo"</sql>
+    <limit />
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Puxa Beneficiários</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>UERP</connection>
+    <sql>select
+	"cadastro_beneficiario"."codigo" as "beneficiario_codigo",
+	"cadastro_contratoclassificacao"."nome" as "contrato_classe",
+	"cadastro_beneficiario"."inicio_vigencia" as "beneficiario_inicio",
+	"cadastro_contrato"."inicio_vigencia" as "contrato_inicio",
+	"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" as dias_inclusao,
+	case
+	when 
+		"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" > 90 then 'inclusão'
+		else 'nova'
+	end as tipo_venda
+from
+	"cadastro_beneficiario"
+left outer join "cadastro_contrato" on
+	("cadastro_beneficiario"."contrato_id" = "cadastro_contrato"."id")
+left outer join "cadastro_contratoclassificacao" on
+	("cadastro_contrato"."classificacao_id" = "cadastro_contratoclassificacao"."id")
+inner join "cadastro_pessoa" on
+	("cadastro_beneficiario"."pessoa_id" = "cadastro_pessoa"."id")
+order by
+	"cadastro_pessoa"."nome" asc,
+	"cadastro_beneficiario"."inicio_vigencia" desc
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Registra BI</name>
     <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -560,7 +788,7 @@
     </partitioning>
     <connection>BI</connection>
     <schema />
-    <table>fato_esmeralda_atendimento</table>
+    <table>fato_vendas</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -577,56 +805,40 @@
     <return_field />
     <fields>
       <field>
-        <column_name>atendimento_id</column_name>
-        <stream_name>atendimento_id</stream_name>
+        <column_name>comissao_paga</column_name>
+        <stream_name>comissao_paga</stream_name>
       </field>
       <field>
-        <column_name>atendimento_unidade_codigo</column_name>
-        <stream_name>atendimento_unidade_codigo</stream_name>
+        <column_name>competencia</column_name>
+        <stream_name>competencia</stream_name>
       </field>
       <field>
-        <column_name>atendimento_procedimento_id</column_name>
-        <stream_name>atendimento_procedimento_id</stream_name>
+        <column_name>beneficiario_codigo</column_name>
+        <stream_name>beneficiario_codigo</stream_name>
       </field>
       <field>
-        <column_name>paciente_id</column_name>
-        <stream_name>paciente_id</stream_name>
+        <column_name>vendedor_nome</column_name>
+        <stream_name>vendedor_nome</stream_name>
       </field>
       <field>
-        <column_name>procedimento_nome</column_name>
-        <stream_name>procedimento_nome</stream_name>
+        <column_name>vendedor_codigo</column_name>
+        <stream_name>vendedor_codigo</stream_name>
       </field>
       <field>
-        <column_name>procedimento_id</column_name>
-        <stream_name>procedimento_id</stream_name>
+        <column_name>cidadepais_nome</column_name>
+        <stream_name>cidadepais_nome</stream_name>
       </field>
       <field>
-        <column_name>date_sk</column_name>
-        <stream_name>date_sk</stream_name>
+        <column_name>vendedor_classe</column_name>
+        <stream_name>vendedor_classe</stream_name>
       </field>
       <field>
-        <column_name>atendimento_dia_semana</column_name>
-        <stream_name>atendimento_dia_semana</stream_name>
+        <column_name>tipo_venda</column_name>
+        <stream_name>tipo_venda</stream_name>
       </field>
       <field>
-        <column_name>atendimento_hora</column_name>
-        <stream_name>atendimento_hora</stream_name>
-      </field>
-      <field>
-        <column_name>atendimento_minuto</column_name>
-        <stream_name>atendimento_minuto</stream_name>
-      </field>
-      <field>
-        <column_name>atendimento_convenio</column_name>
-        <stream_name>atendimento_convenio</stream_name>
-      </field>
-      <field>
-        <column_name>atendimento_idade</column_name>
-        <stream_name>atendimento_idade</stream_name>
-      </field>
-      <field>
-        <column_name>atendimento_procedimento_valor</column_name>
-        <stream_name>atendimento_procedimento_valor</stream_name>
+        <column_name>contrato_classe</column_name>
+        <stream_name>contrato_classe</stream_name>
       </field>
     </fields>
     <attributes />
@@ -638,13 +850,61 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>96</yloc>
+      <xloc>560</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>puxa fato atendimento</name>
+    <name>Junta Dados Benef</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>Puxa Beneficiários</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>beneficiario_codigo</name>
+        <field>beneficiario_codigo</field>
+      </key>
+      <value>
+        <name>tipo_venda</name>
+        <rename>tipo_venda</rename>
+        <default />
+        <type>None</type>
+      </value>
+      <value>
+        <name>contrato_classe</name>
+        <rename>contrato_classe</rename>
+        <default />
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Classe Vendedor</name>
     <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
@@ -654,68 +914,16 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>ESMERALDA</connection>
-    <sql>Select
-	dbo.Format_COD_Unidade(dbo.Atendimento.Cd_Unidade, dbo.Atendimento.Cd_Atendimento_Unidade, NULL, 1) as atendimento_id,
-	CASE 
-		WHEN atendimento.Cd_Unidade =7 THEN 1
-		WHEN atendimento.Cd_Unidade =8 THEN 3
-		else atendimento.Cd_Unidade
-	END AS atendimento_unidade_codigo,
-	Atendimento_Procedimento.Cd_Atendimento_Procedimento as atendimento_procedimento_id,
-	Paciente.Cd_Paciente as paciente_id,
-	Procedimento.Descricao as procedimento_nome,
-	Procedimento.Cd_Procedimento as procedimento_id,
-	CAST(CONVERT(VARCHAR(10), Atendimento.Data_Atendimento, 112) AS INT) as date_sk,
-	CASE DATEPART(WEEKDAY,Atendimento.Data_Atendimento)  
-	    WHEN 1 THEN 'DOMINGO' 
-	    WHEN 2 THEN 'SEGUNDA' 
-	    WHEN 3 THEN 'TERCA' 
-	    WHEN 4 THEN 'QUARTA' 
-	    WHEN 5 THEN 'QUINTA' 
-	    WHEN 6 THEN 'SEXTA' 
-	    WHEN 7 THEN 'SABADO' 
-	END as atendimento_dia_semana,
-	DATEPART(HOUR, Atendimento.Data_Atendimento) as atendimento_hora,
-	DATEPART(MINUTE, Atendimento.Data_Atendimento) as atendimento_minuto,
-	Convenio.Descricao as atendimento_convenio,
-	CONVERT(int,ROUND(DATEDIFF(hour, Paciente.Data_Nascimento, Atendimento.Data_Atendimento)/8766.0,0)) AS atendimento_idade,
-	CASE 
-		WHEN Atendimento_Procedimento.Caixa_Valor_Total > 0 THEN 
-				Atendimento_Procedimento.Caixa_Valor_Total
-		ELSE 
-				Atendimento_Procedimento.Convenio_Valor_Total		
-	END AS atendimento_procedimento_valor
-from Atendimento
-inner join Atendimento_Procedimento on Atendimento_Procedimento.Cd_Atendimento=Atendimento.Cd_Atendimento
-inner join Procedimento on Atendimento_Procedimento.Cd_Procedimento=Procedimento.Cd_Procedimento
-INNER JOIN Contrato_Procedimento cp ON (cp.Cd_Procedimento_Modulo=Procedimento.Cd_Procedimento 
-	OR cp.Cd_Procedimento_Modulo=Procedimento.Cd_Modulo -- modulo
-	OR cp.Cd_Procedimento_Modulo=(SELECT p.Cd_Procedimento FROM Procedimento p WHERE p.Cd_Modulo IS NULL))
-inner join Convenio on Atendimento_Procedimento.Cd_Convenio=Convenio.Cd_Convenio and cp.Cd_Convenio = Convenio.Cd_Convenio
-inner join Paciente on Atendimento.Cd_Paciente=Paciente.Cd_Paciente
-inner join Unidade on atendimento.Cd_Unidade=Unidade.Cd_Unidade
---WHERE
-	--YEAR(Atendimento.Data_Atendimento) = 2019
-group by 
-    dbo.Format_COD_Unidade(dbo.Atendimento.Cd_Unidade, dbo.Atendimento.Cd_Atendimento_Unidade, NULL, 1),
-	Atendimento_Procedimento.Cd_Atendimento_Procedimento,
-	Paciente.Cd_Paciente,
-	Procedimento.Cd_Procedimento,
-	Procedimento.Descricao,
-	Atendimento.Data_Atendimento,
-	Atendimento_Procedimento.Caixa_Valor_Total,
-	Atendimento_Procedimento.Convenio_Valor_Total,
-	Convenio.Descricao,
-	CASE 
-		WHEN atendimento.Cd_Unidade =7 THEN 1
-		WHEN atendimento.Cd_Unidade =8 THEN 3
-		else atendimento.Cd_Unidade
-	END,
-	CONVERT(int,ROUND(DATEDIFF(hour, Paciente.Data_Nascimento, Atendimento.Data_Atendimento)/8766.0,0))
-order by 
-	--dbo.Format_COD_Unidade(dbo.Atendimento.Cd_Unidade, dbo.Atendimento.Cd_Atendimento_Unidade, NULL, 1)
-	Atendimento.Data_Atendimento</sql>
+    <connection>CARDIO</connection>
+    <sql>Select 
+	Vendedor.Codigo as VENDEDOR_CODIGO,
+	Pessoa.AutoId as PESSOA_AUTOID,
+	Pessoa.Nome as PESSOA_NOME,
+	Classevendedor.Codigo as CLASSEVENDEDOR_CODIGO,
+	Classevendedor.Nome as CLASSEVENDEDOR_NOME
+	from Vendedor
+inner join Pessoa on Vendedor.Pessoa=Pessoa.AutoId
+inner join Classevendedor on Vendedor.Classe=Classevendedor.Codigo</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -730,8 +938,50 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>96</yloc>
+      <xloc>224</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Junta Classe Vendedor</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>Classe Vendedor</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>vendedor_codigo</name>
+        <field>VENDEDOR_CODIGO</field>
+      </key>
+      <value>
+        <name>CLASSEVENDEDOR_NOME</name>
+        <rename>vendedor_classe</rename>
+        <default />
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

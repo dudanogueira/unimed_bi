@@ -80,7 +80,7 @@
       <Hierarchy visible="true" hasAll="true" primaryKey="servico_autoid">
         <Table name="dim_servico_operadora" schema="public">
         </Table>
-        <Level name="Codigo" visible="true" column="servico_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Level name="Codigo" visible="true" column="servico_codigo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="servico_nome">
         </Level>
       </Hierarchy>
     </Dimension>
