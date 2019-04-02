@@ -76,43 +76,47 @@
     </Measure>
   </Cube>
   <Cube name="Comiss&#227;o de Vendas" visible="true" cache="true" enabled="true">
-    <Table name="fato_vendas" schema="public" alias="">
+    <Table name="fato_vendas" schema="public">
     </Table>
-    <Dimension type="StandardDimension" visible="true" name="Vendedor">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Vendedor">
       <Hierarchy name="Vendedor" visible="true" hasAll="true">
-        <Level name="Vendedor" visible="true" column="vendedor_nome" uniqueMembers="false">
+        <Level name="Vendedor" visible="true" column="vendedor_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Classe Vendedor" visible="true" hasAll="true">
-        <Level name="Classe Vendedor" visible="true" column="vendedor_classe" uniqueMembers="false">
+        <Level name="Classe Vendedor" visible="true" column="vendedor_classe" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Cidade">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Cidade">
       <Hierarchy name="Cidade" visible="true" hasAll="true">
-        <Level name="Cidade" visible="true" column="cidadepais_nome" uniqueMembers="false">
+        <Level name="Cidade" visible="true" column="cidadepais_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Compet&#234;ncia">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Compet&#234;ncia">
       <Hierarchy name="Compet&#234;ncia" visible="true" hasAll="true">
-        <Level name="Compet&#234;ncia" visible="true" column="competencia" uniqueMembers="false">
+        <Level name="Compet&#234;ncia" visible="true" column="competencia" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Ano" visible="true" hasAll="true">
+        <Level name="Ano" visible="true" column="ano" uniqueMembers="false">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Tipo de Venda">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tipo de Venda">
       <Hierarchy name="Tipo de Venda" visible="true" hasAll="true">
-        <Level name="Tipo de Venda" visible="true" column="tipo_venda" uniqueMembers="false">
+        <Level name="Tipo de Venda" visible="true" column="tipo_venda" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Classe do Contrato">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Classe do Contrato">
       <Hierarchy name="Classe do Contrato" visible="true" hasAll="true">
-        <Level name="Classe do Contrato" visible="true" column="contrato_classe" uniqueMembers="false">
+        <Level name="Classe do Contrato" visible="true" column="contrato_classe" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Measure name="Valor" column="comissao_paga" aggregator="sum" visible="true">
+    <Measure name="Valor" column="comissao_paga" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum" visible="true">
     </Measure>
     <Measure name="Quantidade" column="beneficiario_codigo" aggregator="distinct-count" visible="true">
     </Measure>
