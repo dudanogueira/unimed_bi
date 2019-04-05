@@ -83,6 +83,18 @@
         <Level name="Codigo" visible="true" column="servico_codigo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="servico_nome">
         </Level>
       </Hierarchy>
+      <Hierarchy name="Grupo" visible="true" hasAll="true" primaryKey="servico_autoid">
+        <Table name="dim_servico_operadora" schema="public">
+        </Table>
+        <Level name="Grupo" visible="true" column="grupo1_codigo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" captionColumn="grupo1_nome">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Grupo Especial" visible="true" hasAll="true" primaryKey="servico_autoid">
+        <Table name="dim_servico_operadora" schema="public">
+        </Table>
+        <Level name="Grupo Especial" visible="true" column="grupo_especial" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="solicitante_id" highCardinality="false" name="Solicitante">
       <Hierarchy name="Solicitante" visible="true" hasAll="true">
