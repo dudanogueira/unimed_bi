@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/04/02 14:12:29.294</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/04/04 14:05:19.335</modified_date>
+    <modified_date>2019/04/08 19:08:09.237</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -648,11 +648,6 @@
   </connection>
   <order>
     <hop>
-      <from>Puxa Beneficiários</from>
-      <to>Junta Dados Benef</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Junta Dados Benef</from>
       <to>Registra BI</to>
       <enabled>Y</enabled>
@@ -670,6 +665,16 @@
     <hop>
       <from>Classe Vendedor</from>
       <to>Junta Classe Vendedor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Puxa Beneficiários</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
+      <to>Junta Dados Benef</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -693,7 +698,9 @@
 	"comissao_vendas_comissaodevendas"."beneficiario_codigo",
 	"comissao_vendas_comissaodevendas"."vendedor_nome",
 	"comissao_vendas_comissaodevendas"."vendedor_codigo",
-	"comissao_vendas_comissaodevendas"."cidadepais_nome"
+	"comissao_vendas_comissaodevendas"."cidadepais_nome",
+	"comissao_vendas_comissaodevendas"."beneficiario_sexo",
+	"comissao_vendas_comissaodevendas"."beneficiario_idade"
 from
 	"comissao_vendas_comissaodevendas"
 inner join "comissao_vendas_competenciacomercial" on
@@ -703,8 +710,11 @@ group by
 	"comissao_vendas_comissaodevendas"."beneficiario_codigo",
 	"comissao_vendas_comissaodevendas"."vendedor_nome",
 	"comissao_vendas_comissaodevendas"."cidadepais_nome",
-	"comissao_vendas_comissaodevendas"."vendedor_codigo"</sql>
-    <limit>100</limit>
+	"comissao_vendas_comissaodevendas"."vendedor_codigo",
+	"comissao_vendas_comissaodevendas"."beneficiario_sexo",
+	"comissao_vendas_comissaodevendas"."beneficiario_idade"
+</sql>
+    <limit />
     <lookup />
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -816,7 +826,7 @@ inner join Classevendedor on Vendedor.Classe=Classevendedor.Codigo</sql>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <from>Puxa Beneficiários</from>
+    <from>Modified JavaScript value</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -830,13 +840,19 @@ inner join Classevendedor on Vendedor.Classe=Classevendedor.Codigo</sql>
         <name>tipo_venda</name>
         <rename>tipo_venda</rename>
         <default />
-        <type>None</type>
+        <type>String</type>
       </value>
       <value>
         <name>contrato_classe</name>
         <rename>contrato_classe</rename>
         <default />
-        <type>None</type>
+        <type>String</type>
+      </value>
+      <value>
+        <name>grupo_dias_no_contrato</name>
+        <rename>grupo_dias_no_contrato</rename>
+        <default />
+        <type>String</type>
       </value>
     </lookup>
     <attributes />
@@ -869,12 +885,17 @@ inner join Classevendedor on Vendedor.Classe=Classevendedor.Codigo</sql>
 	"cadastro_beneficiario"."codigo" as "beneficiario_codigo",
 	"cadastro_contratoclassificacao"."nome" as "contrato_classe",
 	"cadastro_beneficiario"."inicio_vigencia" as "beneficiario_inicio",
+	"cadastro_beneficiario"."fim_vigencia" as "beneficiario_fim_vigencia",
 	"cadastro_contrato"."inicio_vigencia" as "contrato_inicio",
 	"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" as dias_inclusao,
 	case
-	when 
-		"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" > 90 then 'inclusão'
-		else 'nova'
+		when "cadastro_beneficiario"."fim_vigencia" is not null then "cadastro_beneficiario"."fim_vigencia" - "cadastro_contrato"."inicio_vigencia"
+		else Null
+	end as "dias_no_contrato",
+	case
+		when 
+			"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" > 90 then 'inclusão'
+			else 'nova'
 	end as tipo_venda
 from
 	"cadastro_beneficiario"
@@ -886,8 +907,7 @@ inner join "cadastro_pessoa" on
 	("cadastro_beneficiario"."pessoa_id" = "cadastro_pessoa"."id")
 order by
 	"cadastro_pessoa"."nome" asc,
-	"cadastro_beneficiario"."inicio_vigencia" desc
-</sql>
+	"cadastro_beneficiario"."inicio_vigencia" desc</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -969,6 +989,14 @@ order by
         <stream_name>cidadepais_nome</stream_name>
       </field>
       <field>
+        <column_name>beneficiario_sexo</column_name>
+        <stream_name>beneficiario_sexo</stream_name>
+      </field>
+      <field>
+        <column_name>beneficiario_idade</column_name>
+        <stream_name>beneficiario_idade</stream_name>
+      </field>
+      <field>
         <column_name>vendedor_classe</column_name>
         <stream_name>vendedor_classe</stream_name>
       </field>
@@ -980,6 +1008,10 @@ order by
         <column_name>contrato_classe</column_name>
         <stream_name>contrato_classe</stream_name>
       </field>
+      <field>
+        <column_name>grupo_dias_no_contrato</column_name>
+        <stream_name>grupo_dias_no_contrato</stream_name>
+      </field>
     </fields>
     <attributes />
     <cluster_schema />
@@ -990,8 +1022,74 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>784</xloc>
       <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var grupo_dias_no_contrato = null
+
+if (dias_no_contrato &lt;= 30){
+	
+	grupo_dias_no_contrato = 'Menos de 30 Dias'
+
+}else if (dias_no_contrato > 30 &amp; dias_no_contrato &lt;= 60){
+	
+	grupo_dias_no_contrato = 'Entre 31 e 60 Dias'
+
+} else if (dias_no_contrato > 61 &amp; dias_no_contrato &lt;= 90){
+	
+	grupo_dias_no_contrato = 'Entre 61 e 90 Dias'
+
+}else{
+	grupo_dias_no_contrato = 'Mais que 90 dias'
+}
+
+if (beneficiario_fim_vigencia == null){
+	grupo_dias_no_contrato = 'Ativo'
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>grupo_dias_no_contrato</name>
+        <rename>grupo_dias_no_contrato</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
