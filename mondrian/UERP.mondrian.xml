@@ -120,19 +120,23 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Perman&#234;ncia">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Perman&#234;ncia">
       <Hierarchy name="Perman&#234;ncia" visible="true" hasAll="true">
-        <Level name="Perman&#234;ncia" visible="true" column="grupo_dias_no_contrato" uniqueMembers="false">
+        <Level name="Perman&#234;ncia" visible="true" column="grupo_dias_no_contrato" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Dias Permanencia" visible="true" hasAll="true">
+        <Level name="Dias permanencia" visible="true" column="dias_no_contrato" uniqueMembers="false">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Benefici&#225;rio">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Benefici&#225;rio">
       <Hierarchy name="Sexo" visible="true" hasAll="true">
-        <Level name="Sexo" visible="true" column="beneficiario_sexo" uniqueMembers="false">
+        <Level name="Sexo" visible="true" column="beneficiario_sexo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Idade na Venda" visible="true" hasAll="true">
-        <Level name="Idade na Venda" visible="true" column="beneficiario_idade" uniqueMembers="false">
+        <Level name="Idade na Venda" visible="true" column="beneficiario_idade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
