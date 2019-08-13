@@ -95,6 +95,14 @@
         <Level name="Grupo Especial" visible="true" column="grupo_especial" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
+      <Hierarchy name="Carater Atendimento" visible="true" hasAll="true">
+        <Level name="Carater de Atendimento" visible="true" column="carater_atendimento" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Auto Gerado" visible="true" hasAll="true">
+        <Level name="Auto Gerado" visible="true" column="autogerado" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="solicitante_id" highCardinality="false" name="Solicitante">
       <Hierarchy name="Solicitante" visible="true" hasAll="true">
@@ -173,6 +181,26 @@
         <Table name="dim_grupo_apropriacao" schema="public">
         </Table>
         <Level name="Grupo" visible="true" column="codigo" nameColumn="nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Tempo - Apresenta&#231;&#227;o">
+      <Hierarchy name="Compet&#234;ncia" visible="true" hasAll="true">
+        <Level name="Compet&#234;ncia" visible="true" column="competencia_apresentacao" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Ano" visible="true" hasAll="true">
+        <Level name="Ano" visible="true" column="ano_apresentacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="M&#234;s" visible="true" hasAll="true">
+        <Level name="M&#234;s" visible="true" column="mes_apresentacao" uniqueMembers="false">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" name="Interc&#226;mbio">
+      <Hierarchy name="Interc&#226;mbio" visible="true" hasAll="true">
+        <Level name="Interc&#226;mbio" visible="true" column="intercambio" uniqueMembers="false">
         </Level>
       </Hierarchy>
     </Dimension>

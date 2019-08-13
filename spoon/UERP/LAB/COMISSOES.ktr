@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2019/04/02 14:12:29.294</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/04/10 15:51:19.710</modified_date>
+    <modified_date>2019/07/23 16:04:54.193</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -876,6 +876,72 @@ inner join Classevendedor on Vendedor.Classe=Classevendedor.Codigo</sql>
     </GUI>
   </step>
   <step>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//Script here
+
+var grupo_dias_no_contrato = null
+
+if (dias_no_contrato &lt;= 30){
+	
+	grupo_dias_no_contrato = 'Menos de 30 Dias'
+
+}else if (dias_no_contrato > 30 &amp; dias_no_contrato &lt;= 60){
+	
+	grupo_dias_no_contrato = 'Entre 31 e 60 Dias'
+
+} else if (dias_no_contrato > 61 &amp; dias_no_contrato &lt;= 90){
+	
+	grupo_dias_no_contrato = 'Entre 61 e 90 Dias'
+
+}else{
+	grupo_dias_no_contrato = 'Mais que 90 dias'
+}
+
+if (beneficiario_fim_vigencia == null){
+	grupo_dias_no_contrato = 'Ativo'
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>grupo_dias_no_contrato</name>
+        <rename>grupo_dias_no_contrato</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Puxa Beneficiários</name>
     <type>TableInput</type>
     <description />
@@ -1030,72 +1096,6 @@ order by
     <GUI>
       <xloc>784</xloc>
       <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var grupo_dias_no_contrato = null
-
-if (dias_no_contrato &lt;= 30){
-	
-	grupo_dias_no_contrato = 'Menos de 30 Dias'
-
-}else if (dias_no_contrato > 30 &amp; dias_no_contrato &lt;= 60){
-	
-	grupo_dias_no_contrato = 'Entre 31 e 60 Dias'
-
-} else if (dias_no_contrato > 61 &amp; dias_no_contrato &lt;= 90){
-	
-	grupo_dias_no_contrato = 'Entre 61 e 90 Dias'
-
-}else{
-	grupo_dias_no_contrato = 'Mais que 90 dias'
-}
-
-if (beneficiario_fim_vigencia == null){
-	grupo_dias_no_contrato = 'Ativo'
-}</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>grupo_dias_no_contrato</name>
-        <rename>grupo_dias_no_contrato</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
