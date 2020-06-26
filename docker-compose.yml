@@ -25,9 +25,22 @@ services:
     volumes:
      - postgres_data:/var/lib/postgresql/data
     shm_size: '2gb'
-    
+  
+  webspoon:
+    image: hiromuhota/webspoon
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./lib/mssql-jdbc-7.0.0.jre10.jar:/usr/local/tomcat/lib/mssql-jdbc-7.0.0.jre10.jar
+      - ./lib/jtds-1.3.1.jar:/usr/local/tomcat/lib/jtds-1.3.1.jar
+      - webspoon_kettle:/home/tomcat/.kettle
+      - webspoon_pentaho:/home/tomcat/.pentaho
+      - ./spoon/:/spoon/unimed_bi
 
 volumes:
   pentaho-solutions:
   postgres_data:
+  webspoon_kettle:
+  webspoon_pentaho:
   
