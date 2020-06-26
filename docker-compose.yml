@@ -38,10 +38,10 @@ services:
       - webspoon_pentaho:/home/tomcat/.pentaho
       - ./spoon/:/spoon/unimed_bi
   
-  volumes:
-    pentaho-solutions:
-    postgres_data:
-    webspoon_kettle:
-    webspoon_pentaho:
+volumes:
+  pentaho-solutions:
+  postgres_data:
+  webspoon_kettle:
+  webspoon_pentaho:
     
   
