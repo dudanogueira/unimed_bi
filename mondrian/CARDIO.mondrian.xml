@@ -111,6 +111,12 @@
         <Level name="Solicitante" visible="true" column="prestador_autoid" nameColumn="prestador_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
+      <Hierarchy name="Classe" visible="true" hasAll="true" primaryKey="prestador_autoid">
+        <Table name="dim_prestador" schema="public">
+        </Table>
+        <Level name="Classe" visible="true" column="prestador_classe_nome" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="beneficiario_autoid" highCardinality="false" name="Beneficiario">
       <Hierarchy name="Faixa Et&#225;ria" visible="true" hasAll="true">
@@ -194,13 +200,13 @@
         </Level>
       </Hierarchy>
       <Hierarchy name="M&#234;s" visible="true" hasAll="true">
-        <Level name="M&#234;s" visible="true" column="mes_apresentacao" uniqueMembers="false">
+        <Level name="M&#234;s" visible="true" column="mes_apresentacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Interc&#226;mbio">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Interc&#226;mbio">
       <Hierarchy name="Interc&#226;mbio" visible="true" hasAll="true">
-        <Level name="Interc&#226;mbio" visible="true" column="intercambio" uniqueMembers="false">
+        <Level name="Interc&#226;mbio" visible="true" column="intercambio" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>
@@ -208,7 +214,9 @@
     </Measure>
     <Measure name="Valor pago" column="valor_pago" formatString="R$ #,###.00;(R$ #,###.00)" aggregator="sum">
     </Measure>
-    <Measure name="Quantidade" column="item_evento_autoid" aggregator="distinct-count" visible="true">
+    <Measure name="Quantidade Item" column="item_evento_autoid" datatype="Numeric" aggregator="distinct-count" visible="true">
+    </Measure>
+    <Measure name="Quantidade Evento" column="evento_autoid" datatype="Numeric" aggregator="distinct-count" visible="true">
     </Measure>
     <CalculatedMember name="Pre&#231;o M&#233;dio" formatString="R$ #,###.00;(R$ #,###.00)" formula="[Measures].[Valor pago]/[Measures].[Quantidade]" dimension="Measures" visible="true">
     </CalculatedMember>

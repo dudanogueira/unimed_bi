@@ -72,17 +72,17 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="StandardDimension" visible="true" name="Fluxo Atendimento">
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Fluxo Atendimento">
       <Hierarchy name="Dia da Semana" visible="true" hasAll="true">
-        <Level name="Dia da Semana" visible="true" column="atendimento_dia_semana" uniqueMembers="false">
+        <Level name="Dia da Semana" visible="true" column="atendimento_dia_semana" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Hora" visible="true" hasAll="true">
-        <Level name="Hora" visible="true" column="atendimento_hora" uniqueMembers="false">
+        <Level name="Hora" visible="true" column="atendimento_hora" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
       <Hierarchy name="Minuto" visible="true" hasAll="true">
-        <Level name="Minuto" visible="true" column="atendimento_minuto" uniqueMembers="false">
+        <Level name="Minuto" visible="true" column="atendimento_minuto" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
         </Level>
       </Hierarchy>
     </Dimension>

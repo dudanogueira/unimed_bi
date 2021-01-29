@@ -1,21 +1,21 @@
 <transformation>
   <info>
-    <name>COMISSOES</name>
-    <description />
-    <extended_description />
-    <trans_version />
+    <name>UERP - ANALISE ESPACO VIVER BEM</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>/UERP/LAB</directory>
+    <directory>/UERP</directory>
     <parameters>
     </parameters>
     <log>
       <trans-log-table>
-        <connection />
-        <schema />
-        <table />
-        <size_limit_lines />
-        <interval />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -40,37 +40,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>ERRORS</id>
@@ -124,11 +124,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection />
-        <schema />
-        <table />
-        <interval />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -206,10 +206,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection />
-        <schema />
-        <table />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -272,10 +272,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection />
-        <schema />
-        <table />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -348,10 +348,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection />
-        <schema />
-        <table />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -400,9 +400,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection />
-      <table />
-      <field />
+      <connection/>
+      <table/>
+      <field/>
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -413,7 +413,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file />
+    <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -426,65 +426,14 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2019/04/02 14:12:29.294</created_date>
+    <created_date>2020/11/24 09:52:03.024</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2019/07/23 16:04:54.193</modified_date>
+    <modified_date>2020/11/24 12:03:16.968</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>BI</name>
-    <server>127.0.0.1</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>unimed_bi</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4be17a77ddb96add3</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <connection>
     <name>CARDIO</name>
     <server>192.0.0.4</server>
@@ -494,9 +443,9 @@
     <port>1433</port>
     <username>sa</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79bb7ed7c0ff88</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
     <attributes>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
@@ -541,73 +490,18 @@
     </attributes>
   </connection>
   <connection>
-    <name>INTRANET</name>
-    <server>192.0.0.209</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>intranet</database>
-    <port>5432</port>
-    <username>intranet</username>
-    <password>Encrypted 2be98afc86aa7f2b1a510a375daa69990</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
-  <connection>
     <name>UERP</name>
     <server>127.0.0.1</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>uerp</database>
+    <database>uerp_dev</database>
     <port>15432</port>
     <username>postgres</username>
     <password>Encrypted </password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
     <attributes>
-      <attribute>
-        <code>EXTRA_OPTION_POSTGRESQL.stringtype</code>
-        <attribute>unspecified</attribute>
-      </attribute>
       <attribute>
         <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
         <attribute>N</attribute>
@@ -648,345 +542,156 @@
   </connection>
   <order>
     <hop>
-      <from>Junta Dados Benef</from>
-      <to>Registra BI</to>
+      <from>Table input</from>
+      <to>Database join</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Busca Vendas</from>
-      <to>Junta Classe Vendedor</to>
+      <from>Database join</from>
+      <to>Database join 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Junta Classe Vendedor</from>
-      <to>Junta Dados Benef</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Classe Vendedor</from>
-      <to>Junta Classe Vendedor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Puxa Beneficiários</from>
-      <to>Modified JavaScript value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value</from>
-      <to>Junta Dados Benef</to>
+      <from>Database join 2</from>
+      <to>Microsoft Excel output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Busca Vendas</name>
+    <name>Table input</name>
     <type>TableInput</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>INTRANET</connection>
-    <sql>select
-	SUM("comissao_vendas_comissaodevendas"."valor_comissionado") as "comissao_paga",
-	LEFT("comissao_vendas_competenciacomercial"."competencia"::text, 4) as "ano",
-	RIGHT("comissao_vendas_competenciacomercial"."competencia"::text, 2) as "mes",
-	"comissao_vendas_competenciacomercial"."competencia",
-	"comissao_vendas_comissaodevendas"."beneficiario_codigo",
-	"comissao_vendas_comissaodevendas"."vendedor_nome",
-	"comissao_vendas_comissaodevendas"."vendedor_codigo",
-	"comissao_vendas_comissaodevendas"."cidadepais_nome",
-	"comissao_vendas_comissaodevendas"."beneficiario_sexo",
-	"comissao_vendas_comissaodevendas"."beneficiario_idade"
-from
-	"comissao_vendas_comissaodevendas"
-inner join "comissao_vendas_competenciacomercial" on
-	("comissao_vendas_comissaodevendas"."competencia_comercial_id" = "comissao_vendas_competenciacomercial"."id")
-group by
-	"comissao_vendas_competenciacomercial"."competencia",
-	"comissao_vendas_comissaodevendas"."beneficiario_codigo",
-	"comissao_vendas_comissaodevendas"."vendedor_nome",
-	"comissao_vendas_comissaodevendas"."cidadepais_nome",
-	"comissao_vendas_comissaodevendas"."vendedor_codigo",
-	"comissao_vendas_comissaodevendas"."beneficiario_sexo",
-	"comissao_vendas_comissaodevendas"."beneficiario_idade"
-</sql>
-    <limit />
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Classe Vendedor</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>CARDIO</connection>
-    <sql>Select 
-	Vendedor.Codigo as VENDEDOR_CODIGO,
-	Pessoa.AutoId as PESSOA_AUTOID,
-	Pessoa.Nome as PESSOA_NOME,
-	Classevendedor.Codigo as CLASSEVENDEDOR_CODIGO,
-	Classevendedor.Nome as CLASSEVENDEDOR_NOME
-	from Vendedor
-inner join Pessoa on Vendedor.Pessoa=Pessoa.AutoId
-inner join Classevendedor on Vendedor.Classe=Classevendedor.Codigo</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Junta Classe Vendedor</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Classe Vendedor</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>vendedor_codigo</name>
-        <field>VENDEDOR_CODIGO</field>
-      </key>
-      <value>
-        <name>CLASSEVENDEDOR_NOME</name>
-        <rename>vendedor_classe</rename>
-        <default />
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Junta Dados Benef</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Modified JavaScript value</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>beneficiario_codigo</name>
-        <field>beneficiario_codigo</field>
-      </key>
-      <value>
-        <name>tipo_venda</name>
-        <rename>tipo_venda</rename>
-        <default />
-        <type>String</type>
-      </value>
-      <value>
-        <name>contrato_classe</name>
-        <rename>contrato_classe</rename>
-        <default />
-        <type>String</type>
-      </value>
-      <value>
-        <name>grupo_dias_no_contrato</name>
-        <rename>grupo_dias_no_contrato</rename>
-        <default />
-        <type>String</type>
-      </value>
-      <value>
-        <name>dias_no_contrato</name>
-        <rename>dias_no_contrato</rename>
-        <default />
-        <type>None</type>
-      </value>
-    </lookup>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//Script here
-
-var grupo_dias_no_contrato = null
-
-if (dias_no_contrato &lt;= 30){
-	
-	grupo_dias_no_contrato = 'Menos de 30 Dias'
-
-}else if (dias_no_contrato > 30 &amp; dias_no_contrato &lt;= 60){
-	
-	grupo_dias_no_contrato = 'Entre 31 e 60 Dias'
-
-} else if (dias_no_contrato > 61 &amp; dias_no_contrato &lt;= 90){
-	
-	grupo_dias_no_contrato = 'Entre 61 e 90 Dias'
-
-}else{
-	grupo_dias_no_contrato = 'Mais que 90 dias'
-}
-
-if (beneficiario_fim_vigencia == null){
-	grupo_dias_no_contrato = 'Ativo'
-}</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>grupo_dias_no_contrato</name>
-        <rename>grupo_dias_no_contrato</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Puxa Beneficiários</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <connection>UERP</connection>
     <sql>select
-	"cadastro_beneficiario"."codigo" as "beneficiario_codigo",
-	"cadastro_contratoclassificacao"."nome" as "contrato_classe",
-	"cadastro_beneficiario"."inicio_vigencia" as "beneficiario_inicio",
-	"cadastro_beneficiario"."fim_vigencia" as "beneficiario_fim_vigencia",
-	"cadastro_contrato"."inicio_vigencia" as "contrato_inicio",
-	"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" as dias_inclusao,
-	case
-		when "cadastro_beneficiario"."fim_vigencia" is not null then "cadastro_beneficiario"."fim_vigencia" - "cadastro_contrato"."inicio_vigencia"
-		else Null
-	end as "dias_no_contrato",
-	case
-		when 
-			"cadastro_beneficiario"."inicio_vigencia" - "cadastro_contrato"."inicio_vigencia" > 90 then 'inclusão'
-			else 'nova'
-	end as tipo_venda
+	"cadastro_pessoa"."id_referencia" as pessoa_id,
+	"cadastro_pessoa"."nome" as nome,
+	"programa_saude_participacaoprogramasaude"."inicio" as inicio_programa,
+	to_char("programa_saude_participacaoprogramasaude"."inicio" ,'YYYYMM') competencia_inicio_programa
 from
-	"cadastro_beneficiario"
-left outer join "cadastro_contrato" on
-	("cadastro_beneficiario"."contrato_id" = "cadastro_contrato"."id")
-left outer join "cadastro_contratoclassificacao" on
-	("cadastro_contrato"."classificacao_id" = "cadastro_contratoclassificacao"."id")
+	"programa_saude_participacaoprogramasaude"
+inner join "cadastro_beneficiario" on
+	("programa_saude_participacaoprogramasaude"."beneficiario_id" = "cadastro_beneficiario"."id")
 inner join "cadastro_pessoa" on
 	("cadastro_beneficiario"."pessoa_id" = "cadastro_pessoa"."id")
+left outer join "cadastro_beneficiario" T5 on
+	("cadastro_pessoa"."id" = T5."pessoa_id")
+where
+	"programa_saude_participacaoprogramasaude"."programa_id" = 4
+group by
+	"cadastro_pessoa"."id_referencia",
+	"cadastro_pessoa"."nome",
+	"programa_saude_participacaoprogramasaude"."inicio"
 order by
-	"cadastro_pessoa"."nome" asc,
-	"cadastro_beneficiario"."inicio_vigencia" desc</sql>
+	"programa_saude_participacaoprogramasaude"."inicio" desc</sql>
     <limit>0</limit>
-    <lookup />
+    <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>pessoa_id</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>pessoa_id</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>nome</name>
+        <length>120</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>nome</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Date</type>
+        <storagetype>normal</storagetype>
+        <name>inicio_programa</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>inicio_programa</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>competencia_inicio_programa</name>
+        <length>2147483647</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>competencia_inicio_programa</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -994,99 +699,80 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>48</yloc>
+      <xloc>144</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Registra BI</name>
-    <type>TableOutput</type>
-    <description />
+    <name>Database join</name>
+    <type>DBJoin</type>
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <connection>BI</connection>
-    <schema />
-    <table>fato_vendas</table>
-    <commit>1000</commit>
-    <truncate>Y</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
+    <connection>CARDIO</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select CAST(ROUND(AVG(totalPago), 1) as decimal) as media_custo_antes
+from
+(
+
+	select 
+		top 12
+		Pessoa.Autoid,
+		lotedocservico.compapresentacao,
+		sum(totalpago) as 'totalPago'
+	from
+		compvlitemevento
+	inner join itemevento on
+		compvlitemevento.itemevento = itemevento.autoid
+	inner join evento on
+		itemevento.evento = evento.autoid
+	inner join lotedocservico on
+		evento.lote = lotedocservico.autoid
+	inner join beneficiario on
+		evento.beneficiario = beneficiario.autoid
+	inner join pessoa on
+		pessoa.autoid = beneficiario.pessoa
+	inner join contrato on
+		beneficiario.contrato = contrato.autoid
+	inner join grupoapropriacaoutil on
+		evento.grupoapro = grupoapropriacaoutil.codigo
+	where
+		Pessoa.Autoid = ?
+		and lotedocservico.compapresentacao &lt; ?
+		and 
+		(
+			(itemevento.parecerauditoria = 0
+			or itemevento.parecerauditoria = 2)
+		)
+	group by
+		lotedocservico.compapresentacao,
+		Pessoa.Autoid
+	order by
+		lotedocservico.compapresentacao asc
+
+
+) as k
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
       <field>
-        <column_name>comissao_paga</column_name>
-        <stream_name>comissao_paga</stream_name>
+        <name>pessoa_id</name>
+        <type>None</type>
       </field>
       <field>
-        <column_name>ano</column_name>
-        <stream_name>ano</stream_name>
+        <name>competencia_inicio_programa</name>
+        <type>None</type>
       </field>
-      <field>
-        <column_name>mes</column_name>
-        <stream_name>mes</stream_name>
-      </field>
-      <field>
-        <column_name>competencia</column_name>
-        <stream_name>competencia</stream_name>
-      </field>
-      <field>
-        <column_name>beneficiario_codigo</column_name>
-        <stream_name>beneficiario_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>vendedor_nome</column_name>
-        <stream_name>vendedor_nome</stream_name>
-      </field>
-      <field>
-        <column_name>vendedor_codigo</column_name>
-        <stream_name>vendedor_codigo</stream_name>
-      </field>
-      <field>
-        <column_name>cidadepais_nome</column_name>
-        <stream_name>cidadepais_nome</stream_name>
-      </field>
-      <field>
-        <column_name>beneficiario_sexo</column_name>
-        <stream_name>beneficiario_sexo</stream_name>
-      </field>
-      <field>
-        <column_name>beneficiario_idade</column_name>
-        <stream_name>beneficiario_idade</stream_name>
-      </field>
-      <field>
-        <column_name>vendedor_classe</column_name>
-        <stream_name>vendedor_classe</stream_name>
-      </field>
-      <field>
-        <column_name>tipo_venda</column_name>
-        <stream_name>tipo_venda</stream_name>
-      </field>
-      <field>
-        <column_name>contrato_classe</column_name>
-        <stream_name>contrato_classe</stream_name>
-      </field>
-      <field>
-        <column_name>grupo_dias_no_contrato</column_name>
-        <stream_name>grupo_dias_no_contrato</stream_name>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
+    </parameter>
+    <attributes/>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1094,8 +780,192 @@ order by
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>256</yloc>
+      <xloc>304</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Database join 2</name>
+    <type>DBJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>CARDIO</connection>
+    <rowlimit>0</rowlimit>
+    <sql>select CAST(ROUND(AVG(totalPago), 1) as decimal) as media_custo_depois
+from
+(
+
+	select 
+		top 12
+		Pessoa.Autoid,
+		lotedocservico.compapresentacao,
+		sum(totalpago) as 'totalPago'
+	from
+		compvlitemevento
+	inner join itemevento on
+		compvlitemevento.itemevento = itemevento.autoid
+	inner join evento on
+		itemevento.evento = evento.autoid
+	inner join lotedocservico on
+		evento.lote = lotedocservico.autoid
+	inner join beneficiario on
+		evento.beneficiario = beneficiario.autoid
+	inner join pessoa on
+		pessoa.autoid = beneficiario.pessoa
+	inner join contrato on
+		beneficiario.contrato = contrato.autoid
+	inner join grupoapropriacaoutil on
+		evento.grupoapro = grupoapropriacaoutil.codigo
+	where
+		Pessoa.Autoid = ?
+		and lotedocservico.compapresentacao >= ?
+		and 
+		(
+			(itemevento.parecerauditoria = 0
+			or itemevento.parecerauditoria = 2)
+		)
+	group by
+		lotedocservico.compapresentacao,
+		Pessoa.Autoid
+	order by
+		lotedocservico.compapresentacao asc
+
+
+) as k
+</sql>
+    <outer_join>N</outer_join>
+    <replace_vars>Y</replace_vars>
+    <parameter>
+      <field>
+        <name>pessoa_id</name>
+        <type>None</type>
+      </field>
+      <field>
+        <name>competencia_inicio_programa</name>
+        <type>None</type>
+      </field>
+    </parameter>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Microsoft Excel output</name>
+    <type>ExcelOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <header>Y</header>
+    <footer>N</footer>
+    <encoding/>
+    <append>N</append>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name>/home/dudanogueira/Documentos/EVB/analise_custo_antes_x_depois</name>
+      <extention>xls</extention>
+      <do_not_open_newfile_init>N</do_not_open_newfile_init>
+      <create_parent_folder>N</create_parent_folder>
+      <split>N</split>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <sheetname>Sheet1</sheetname>
+      <autosizecolums>N</autosizecolums>
+      <nullisblank>N</nullisblank>
+      <protect_sheet>N</protect_sheet>
+      <password>Encrypted </password>
+      <splitevery>0</splitevery>
+      <usetempfiles>N</usetempfiles>
+      <tempdirectory/>
+    </file>
+    <template>
+      <enabled>N</enabled>
+      <append>N</append>
+      <filename>template.xls</filename>
+    </template>
+    <fields>
+      <field>
+        <name>pessoa_id</name>
+        <type>Integer</type>
+        <format>#</format>
+      </field>
+      <field>
+        <name>nome</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>inicio_programa</name>
+        <type>Date</type>
+        <format/>
+      </field>
+      <field>
+        <name>competencia_inicio_programa</name>
+        <type>String</type>
+        <format/>
+      </field>
+      <field>
+        <name>media_custo_antes</name>
+        <type>Number</type>
+        <format/>
+      </field>
+      <field>
+        <name>media_custo_depois</name>
+        <type>Number</type>
+        <format/>
+      </field>
+    </fields>
+    <custom>
+      <header_font_name>arial</header_font_name>
+      <header_font_size>10</header_font_size>
+      <header_font_bold>N</header_font_bold>
+      <header_font_italic>N</header_font_italic>
+      <header_font_underline>no</header_font_underline>
+      <header_font_orientation>horizontal</header_font_orientation>
+      <header_font_color>black</header_font_color>
+      <header_background_color>none</header_background_color>
+      <header_row_height>255</header_row_height>
+      <header_alignment>left</header_alignment>
+      <header_image/>
+      <row_font_name>arial</row_font_name>
+      <row_font_size>10</row_font_size>
+      <row_font_color>black</row_font_color>
+      <row_background_color>none</row_background_color>
+    </custom>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1104,5 +974,5 @@ order by
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
   <slave_transformation>N</slave_transformation>
-  <attributes />
+  <attributes/>
 </transformation>

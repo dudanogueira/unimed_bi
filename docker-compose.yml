@@ -13,6 +13,8 @@ services:
     volumes:
      - pentaho-solutions:/opt/pentaho/pentaho-server/pentaho-solutions/
     hostname: "dnog"
+    environment:
+      PENTAHO_JAVA_HOME: /usr/local/openjdk-8/
 
   db:
     image: postgres

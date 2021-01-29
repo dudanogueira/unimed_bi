@@ -8,8 +8,8 @@ ENV PENTAHO_SYSTEM /opt/pentaho/pentaho-server/pentaho-solutions/system/
 
 # Apply JAVA_HOME
 RUN . /etc/environment
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
-ENV PENTAHO_JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+ENV JAVA_HOME /usr/local/openjdk-8/
+ENV PENTAHO_JAVA_HOME /usr/local/openjdk-8/
 
 # Install Dependences
 RUN apt-get update; apt-get install zip netcat -y; \
@@ -31,8 +31,8 @@ RUN mkdir ${PENTAHO_HOME}; useradd -s /bin/bash -d ${PENTAHO_HOME} pentaho; chow
 USER pentaho
 
 
-ENV PENTAHO_URL  https://downloads.sourceforge.net/project/pentaho/Pentaho%208.2/server/pentaho-server-ce-8.2.0.0-342.zip
-ENV PENTAHO_FILE pentaho-server-ce-8.2.0.0-342.zip
+ENV PENTAHO_URL  https://sourceforge.net/projects/pentaho/files/Pentaho%209.0/server/pentaho-server-ce-9.0.0.0-423.zip
+ENV PENTAHO_FILE pentaho-server-ce-9.0.0.0-423.zip
 # try to get from local first
 
 #COPY ./$PENTAHO_FILE /tmp/$PENTAHO_FILE
@@ -69,7 +69,7 @@ RUN /usr/bin/unzip -q /tmp/pivot4j.zip -d $PENTAHO_SYSTEM && \
 # http://meteorite.bi/downloads/saiku-plugin-p7.1-3.90.zip
 # GET THE FREE LICENSE at http://meteorite.bi
 # the host of the license must match the container host
-RUN wget http://meteorite.bi/downloads/saiku-plugin-p7.1-3.90.zip -O /tmp/saiku.zip
+RUN wget http://downloads.meteorite.bi/saiku3/saikuee-plugin-p7-3.17.zip -O /tmp/saiku.zip
 RUN /usr/bin/unzip -q /tmp/saiku.zip -d $PENTAHO_SYSTEM && \
     rm -f /tmp/saiku.zip
 
